@@ -69,6 +69,150 @@ union {
     };
 } indicators;
 
+typedef struct {
+    keycode_t kc1, kc2;
+    uint8_t altCode;
+    uint16_t utf16;
+} compose_t;
+
+compose_t straight_combinations[] = {
+    {k(S),    k(M),      0x25BA}, // ☺
+    {k(B),    k(S),      2, 0x263B}, // ☻
+    {k(H),    k(T),      3, 0x2665}, // ♥
+    {k(D),    k(M),      4, 0x2666}, // ♦
+    {k(C),    k(B),      5, 0x2663}, // ♣
+    {k(S),    k(P),      6, 0x2660}, // ♠
+    {k(C),    k(R),      9, 0x25CB}, // ○
+    {k(M),    k(S),     11, 0x2642}, // ♂
+    {k(V),    k(S),     12, 0x2640}, // ♀
+    {k(E),    k(N),     13, 0x266A}, // ♪
+    {k(E),    k(S),     14, 0x266B}, // ♫
+    {k(S),    k(N),     15, 0x263C}, // ☼
+    {k(R),    k(P),     16, 0x25BA}, // ►
+    {k(L),    k(P),     17, 0x25C4}, // ◄
+    {k(U),    k(D),     18, 0x2195}, // ↕
+    {k(D),    k(EXCL),  19, 0x203C}, // ‼
+    {k(EQL),  k(EQL),   22, 0x25AC}, // ▬
+    {k(VERT), k(B),     23, 0x21A8}, // ↨
+    {k(VERT), k(CIRC),  24, 0x2195}, // ↑
+    {k(VERT), k(V),     25, 0x2193}, // ↓
+    {k(MNS),  k(LABK),  26, 0x2192}, // →
+    {k(RABK), k(MNS),   27, 0x2190}, // ←
+    {k(LABK), k(RABK),  29, 0x2194}, // ↔
+    {k(U),    k(P),     30, 0x25B2}, // ▲
+    {k(D),    k(P),     31, 0x25BC}, // ▼
+    {k(F),    k(F),    131, 0x0192}, // ƒ
+    {k(DOT),  k(DOT),  133, 0x2026}, // …
+    {k(M),    k(CIRC), 136, 0x02C6}, // ˆ
+    {k(PERC), k(O),    137, 0x2030}, // ‰
+    {k(V),    s(S),    138, 0x0160}, // Š
+    {k(DOT),  k(LABK), 139, 0x2039}, // ‹
+    {s(O),    s(E),    140, 0x0152}, // Œ
+    {k(V),    s(Z),    142, 0x017D}, // Ž
+    {k(DOT),  k(EQL),  149, 0x2022}, // •
+    {k(MNS),  k(DOT),  150, 0x2013}, // –
+    {k(MNS),  k(EQL),  151, 0x2014}, // —
+    {k(T),    k(M),    153, 0x2122}, // ™
+    {k(V),    k(S),    154, 0x0161}, // š
+    {k(DOT),  k(RABK), 155, 0x203A}, // ›
+    {k(O),    k(E),    156, 0x0153}, // œ
+    {k(V),    k(Z),    158, 0x017E}, // ž
+    {k(N),    k(B),    160, 0x00A0}, // nbsp
+    {k(EXCL), k(EXCL), 161, 0x00A1}, // ¡
+    {k(EXCL), k(CIRC), 166, 0x00A6}, // ¦
+    {k(DQUO), k(DQUO), 168, 0x00A8}, // ¨
+    {k(LABK), k(LABK), 171, 0x00AB}, // «
+    {k(MNS),  k(COMM), 172, 0x00AC}, // ¬
+    {k(O),    k(O),    176, 0x00B0}, // °
+    {k(PLUS), k(MNS),  177, 0x00B1}, // ±
+    {k(QUOT), k(QUOT), 180, 0x00B4}, // ´
+    {k(SLSH), k(U),    181, 0x00B5}, // μ
+    {k(p),    k(EXCL), 182, 0x00B6}, // ¶
+    {k(COMM), k(COMM), 184, 0x00B8}, // ¸
+    {k(RABK), k(RABK), 187, 0x00BB}, // »
+    {k(1),    k(4),    188, 0x00BC}, // ¼
+    {k(1),    k(2),    189, 0x00BD}, // ½
+    {K(3),    k(4),    190, 0x00BE}, // ¾
+    {k(QUES), k(QUES), 191, 0x00BF}, // ¿
+    {s(A),    s(E),    198, 0x00C6}, // Æ
+    {s(C),    k(COMM), 199, 0x00C7}, // Ç
+    {s(D),    s(H),    208, 0x00D0}, // Ð
+    {k(X),    k(X),    215, 0x00D7}, // ×
+    {s(T),    s(H),    222, 0x00DE}, // Þ
+    {k(S),    k(S),    223, 0x00DF}, // ß
+    {k(D),    k(H),    240, 0x00F0}, // ð
+    {k(T),    k(H),    254, 0x00FE}, // þ
+};
+
+compose_t any_order_combinations[] = {
+    {k(S),    k(M),      0x25BA}, // ☺
+    {k(B),    k(S),      2, 0x263B}, // ☻
+    {k(H),    k(T),      3, 0x2665}, // ♥
+    {k(D),    k(M),      4, 0x2666}, // ♦
+    {k(C),    k(B),      5, 0x2663}, // ♣
+    {k(S),    k(P),      6, 0x2660}, // ♠
+    {k(C),    k(R),      9, 0x25CB}, // ○
+    {k(M),    k(S),     11, 0x2642}, // ♂
+    {k(V),    k(S),     12, 0x2640}, // ♀
+    {k(E),    k(N),     13, 0x266A}, // ♪
+    {k(E),    k(S),     14, 0x266B}, // ♫
+    {k(S),    k(N),     15, 0x263C}, // ☼
+    {k(R),    k(P),     16, 0x25BA}, // ►
+    {k(L),    k(P),     17, 0x25C4}, // ◄
+    {k(U),    k(D),     18, 0x2195}, // ↕
+    {k(D),    k(EXCL),  19, 0x203C}, // ‼
+    {k(EQL),  k(EQL),   22, 0x25AC}, // ▬
+    {k(VERT), k(B),     23, 0x21A8}, // ↨
+    {k(VERT), k(CIRC),  24, 0x2195}, // ↑
+    {k(VERT), k(V),     25, 0x2193}, // ↓
+    {k(MNS),  k(LABK),  26, 0x2192}, // →
+    {k(RABK), k(MNS),   27, 0x2190}, // ←
+    {k(LABK), k(RABK),  29, 0x2194}, // ↔
+    {k(U),    k(P),     30, 0x25B2}, // ▲
+    {k(D),    k(P),     31, 0x25BC}, // ▼
+    {k(F),    k(F),    131, 0x0192}, // ƒ
+    {k(DOT),  k(DOT),  133, 0x2026}, // …
+    {k(M),    k(CIRC), 136, 0x02C6}, // ˆ
+    {k(PERC), k(O),    137, 0x2030}, // ‰
+    {k(V),    s(S),    138, 0x0160}, // Š
+    {k(DOT),  k(LABK), 139, 0x2039}, // ‹
+    {s(O),    s(E),    140, 0x0152}, // Œ
+    {k(V),    s(Z),    142, 0x017D}, // Ž
+    {k(DOT),  k(EQL),  149, 0x2022}, // •
+    {k(MNS),  k(DOT),  150, 0x2013}, // –
+    {k(MNS),  k(EQL),  151, 0x2014}, // —
+    {k(T),    k(M),    153, 0x2122}, // ™
+    {k(V),    k(S),    154, 0x0161}, // š
+    {k(DOT),  k(RABK), 155, 0x203A}, // ›
+    {k(O),    k(E),    156, 0x0153}, // œ
+    {k(V),    k(Z),    158, 0x017E}, // ž
+    {k(N),    k(B),    160, 0x00A0}, // nbsp
+    {k(EXCL), k(EXCL), 161, 0x00A1}, // ¡
+    {k(EXCL), k(CIRC), 166, 0x00A6}, // ¦
+    {k(DQUO), k(DQUO), 168, 0x00A8}, // ¨
+    {k(LABK), k(LABK), 171, 0x00AB}, // «
+    {k(MNS),  k(COMM), 172, 0x00AC}, // ¬
+    {k(O),    k(O),    176, 0x00B0}, // °
+    {k(PLUS), k(MNS),  177, 0x00B1}, // ±
+    {k(QUOT), k(QUOT), 180, 0x00B4}, // ´
+    {k(SLSH), k(U),    181, 0x00B5}, // μ
+    {k(p),    k(EXCL), 182, 0x00B6}, // ¶
+    {k(COMM), k(COMM), 184, 0x00B8}, // ¸
+    {k(RABK), k(RABK), 187, 0x00BB}, // »
+    {k(1),    k(4),    188, 0x00BC}, // ¼
+    {k(1),    k(2),    189, 0x00BD}, // ½
+    {K(3),    k(4),    190, 0x00BE}, // ¾
+    {k(QUES), k(QUES), 191, 0x00BF}, // ¿
+    {s(A),    s(E),    198, 0x00C6}, // Æ
+    {s(C),    k(COMM), 199, 0x00C7}, // Ç
+    {s(D),    s(H),    208, 0x00D0}, // Ð
+    {k(X),    k(X),    215, 0x00D7}, // ×
+    {s(T),    s(H),    222, 0x00DE}, // Þ
+    {k(S),    k(S),    223, 0x00DF}, // ß
+    {k(D),    k(H),    240, 0x00F0}, // ð
+    {k(T),    k(H),    254, 0x00FE}, // þ
+};
+
 // Port B: 8-bit data bus; it has a write-only latch that sinks
 // the currents of 8 LED indicators and a read-only buffer for reading
 // the keyboard sense lines. Normally, the bus port has input direction
