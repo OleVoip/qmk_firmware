@@ -3,6 +3,7 @@
 
 #include "keymap_german.h"
 #include "../../../databus.h"
+#include "../../../databus-kb.h"
 #include "keymap.h"
 
 keycode_t compose_key = KC_CAPS;
@@ -104,7 +105,7 @@ KC_LSFT,KC_BSLS,KC_Z,KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM,KC_DOT,KC_SLSH,
  */
 FCONST two_key_seq_t fixed_seqs[] = {
     {n(S),    n(M),      1, 0x25BA}, // ☺
-    {n(B),    n(S),      2, 0x263B}, // ☻
+{n(B),    n(S),      2, 0x263B}, // ☻
     {n(H),    n(T),      3, 0x2665}, // ♥
     {n(D),    n(M),      4, 0x2666}, // ♦
     {n(C),    n(B),      5, 0x2663}, // ♣
@@ -275,6 +276,8 @@ FCONST two_key_seq_t any_order_seqs[] = {
 
 static bool composing;
 static keycode_t prev_keycode;
+static uint8_t current_host;
+
 
 void keyboard_pre_init_user(void) {
     debug_config.enable = true;
@@ -283,6 +286,7 @@ void keyboard_pre_init_user(void) {
 
     composing = false;
     prev_keycode = 0;
+    current_host = 0;
 }
 
 const two_key_seq_t* find_seq(keycode_t kc1, keycode_t kc2) {
@@ -343,9 +347,13 @@ bool process_record_user(keycode_t keycode, keyrecord_t *record) {
 
         case KB_LA1 ... KB_LA4: // KVM: switch host 1..4
             if (record->event.pressed) {
+                indicators &= ~(1<<current_host);
+                current_host = keycode - KB_LA1;
+                indicators |= (1<<current_host);
+                update_indicators();
                 tap_code16(KC_SCRL);
                 tap_code16(KC_SCRL);
-                tap_code16(KC_1 + (keycode - KB_LA1));
+                tap_code16(KC_1 + current_host);
                 tap_code16(KC_ENTER);
             }
             return false;
@@ -359,8 +367,9 @@ bool process_record_user(keycode_t keycode, keyrecord_t *record) {
                 } else {
                     unregister_code16(keycode);
                 }
+                return false;
             }
-            return false;
+            return true;
 #endif
 
         default:

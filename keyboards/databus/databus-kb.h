@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include <stdint.h>
+
 #include "config.h"
 
 /**
@@ -25,4 +27,6 @@ extern void init_bus(void);
 */
 extern void indicate_bootloader(void);
 
+extern volatile uint8_t indicators;
+extern void update_indicators(void);
 // .

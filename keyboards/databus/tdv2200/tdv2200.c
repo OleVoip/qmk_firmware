@@ -93,7 +93,7 @@ volatile uint8_t indicators = 0;
 /**
  * \brief Synchronize the actual indicators with their internal status.
  */
-static inline void update_indicators(void) {
+void update_indicators(void) {
     write_bus_strobing(~indicators,
         INDICATORS_LATCH_ENABLE_PIN,
         INDICATORS_LATCH_ENABLE_ACTIVE);
