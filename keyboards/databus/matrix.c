@@ -36,7 +36,7 @@ static inline void init_line_drivers(void){
 // sense lines
 typedef uint8_t sense_t;
 static sense_t matrix[DRIVE_LINES];
-static uint8_t scan_times[DRIVE_LINES];
+static uint8_t times_of_change[DRIVE_LINES];
 
 sense_t matrix_get_row(uint8_t iLine) {
     return matrix[iLine];
@@ -53,9 +53,9 @@ __attribute__((constructor)) void maybe_bootloader(void) {
     init_bus();
     init_line_drivers();
     set_bus_input();
-    write_pin(SENSE_OE_PIN, SENSE_OE_ACTIVE);
+    write_pin(SENSE_ENABLE_PIN, SENSE_ENABLE_ACTIVE);
     uint8_t signal = read_sense_lines(driver(0));
-    toggle_pin(SENSE_OE_PIN);
+    toggle_pin(SENSE_ENABLE_PIN);
     if (signal) {
         bootloader_jump();
     }
@@ -70,26 +70,35 @@ uint8_t matrix_scan(void) {
     uint8_t time = timer_read8();
     bool changed = false;
 
-    write_pin(SENSE_OE_PIN, SENSE_OE_ACTIVE);
-    for (uint8_t iLine = DRIVE_LINES; iLine--;) {
-        uint8_t last_time = scan_times[iLine];
-        if (last_time) {
-            if ((uint8_t)(time - last_time) >= DEBOUNCE) {
-                scan_times[iLine] = 0;
+    // enable sense reading via the bus
+    set_bus_input();
+    write_pin(SENSE_ENABLE_PIN, SENSE_ENABLE_ACTIVE);
+
+    // go through all drive lines
+    for (uint8_t iDriver = DRIVE_LINES; iDriver--;) {
+
+        // skip those that had a recent change
+        uint8_t last_change = times_of_change[iDriver];
+        if (last_change) {
+            if ((uint8_t)(time - last_change) >= DEBOUNCE) {
+                times_of_change[iDriver] = 0;
             }
         } else {
-            sense_t signal = read_sense_lines(iLine);
-            if (signal ^ matrix[iLine]) {
+            // activate the drive line and read the sense lines
+            sense_t signal = read_sense_lines(iDriver);
+
+            // if changed, remember the time
+            if (signal ^ matrix[iDriver]) {
                 changed = true;
-                matrix[iLine] = signal;
-                scan_times[iLine] = time ? time : 1;
-                if (signal==3 && !iLine) {
-                    reset_keyboard();
-                }
+                matrix[iDriver] = signal;
+                times_of_change[iDriver] = time ? time : 1;
             }
         }
     }
-    toggle_pin(SENSE_OE_PIN);
+
+    // disable sense line reading
+    toggle_pin(SENSE_ENABLE_PIN);
+    set_bus_idle();
 
     matrix_scan_kb();
     if (changed) {

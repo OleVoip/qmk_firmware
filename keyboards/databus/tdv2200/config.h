@@ -1,17 +1,21 @@
 // Created/amended by OleVoip 2024.
 // SPDX-License-Identifier: GPL-2.0-or-later
 
+/**
+ * NB: This file gets included when compiling xprintf.s;
+ * hence, only #define's are allowed in here, no C code.
+ */
+
 #pragma once
 
 // Every databus keyboard config needs to begin with this
 #include "preconfig.h"
 
-// Gets included when compiling xprintf.s, no enums allowed
+#define NO_EEPROM
+#define USB_WAIT_FOR_ENUMERATION
+#define DEBUG_MATRIX_SCAN_RATE
 
-#define USB_WAIT_FOR_ENUMERATION 1
-#define DEBUG_MATRIX_SCAN_RATE 1
-
-#define BUS_WAIT_CYCLES 2
+#define BUS_WAIT_CYCLES 20
 #define GPIO_INPUT_PIN_DELAY 1
 
 // Sense buffer: connnect 74HC240 pins 1 & 19, remove connection btwn 19 & 20.
@@ -22,11 +26,11 @@
 #define PIEZO_PIN    C4
 #define PIEZO_ACTIVE 1
 
-#define SENSE_OE_PIN    C3
-#define SENSE_OE_ACTIVE 0
+#define SENSE_ENABLE_PIN    C3
+#define SENSE_ENABLE_ACTIVE 0
 
-#define INDICATORS_LE_PIN    C2
-#define INDICATORS_LE_ACTIVE 1
+#define INDICATORS_LATCH_ENABLE_PIN    C2
+#define INDICATORS_LATCH_ENABLE_ACTIVE 1
 
 #define CAPS_LED_PIN    C1
 #define CAPS_LED_ACTIVE 0

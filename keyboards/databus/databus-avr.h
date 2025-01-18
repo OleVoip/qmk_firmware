@@ -26,17 +26,16 @@ static inline void write_bus(uint8_t value) {
 
 static inline void set_bus_idle(void) {
     DDR(BUS_PORT) = 0;
-    wait_for_bus();
-    PORT(BUS_PORT) = 0xFF;
+    write_bus(~0);
 }
 
 static inline void set_bus_input(void) {
     DDR(BUS_PORT) = 0;
-    PORT(BUS_PORT) = 0;
+    write_bus(0);
 }
 
 static inline void set_bus_output(void) {
-    DDR(BUS_PORT) = 0;
+    DDR(BUS_PORT) = ~0;
 }
 
 static inline uint8_t timer_read8(void) {

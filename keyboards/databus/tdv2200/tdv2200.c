@@ -61,7 +61,24 @@ FCONST labelmap_t key_position_labels = {
 
 // clang-format on
 
-volatile uint8_t indicators;
+/**
+ * Port B: 8-bit data bus; it has a write-only latch that sinks
+ * the currents of 8 LED indicators and a read-only buffer for reading
+ * the keyboard sense lines. Normally, the bus port has input direction
+ * as the system is mostly busy scanning the keyboard, ie, reading the
+ * sense lines.
+ * Port C: 2 extra LEDs, beeper and chip enable flags for the keyboard bus
+ * driver and indicator latch Beeper needs to be pin 4 or higher since it
+ * needs PWM.
+ */
+
+/**
+ * \brief Register for the 8 indicator lamps above the key area.
+ * This variable holds the logical status, which is 1 for active LEDs.
+ * The actual latch has active_low logic; this is taken care of in the
+ * update_indicators() function.
+ */
+volatile uint8_t indicators = 0;
 #define IND_ERROR (1<<7)
 #define IND_WAIT  (1<<6)
 #define IND_LINE  (1<<5)
@@ -71,27 +88,19 @@ volatile uint8_t indicators;
 #define IND_L2    (1<<1)
 #define IND_L1    (1<<0)
 
-// Port B: 8-bit data bus; it has a write-only latch that sinks
-// the currents of 8 LED indicators and a read-only buffer for reading
-// the keyboard sense lines. Normally, the bus port has input direction
-// as the system is mostly busy scanning the keyboard, ie, reading the
-// sense lines.
-
-// Port C: 2 extra LEDs, beeper and chip enable flags for the keyboard bus
-// driver and indicator latch Beeper needs to be pin 4 or higher since it
-// needs PWM.
-
+/**
+ * \brief Synchronize the actual indicators with their internal status.
+ */
 static inline void update_indicators(void) {
-    write_bus_strobing(indicators, INDICATORS_LE_PIN, INDICATORS_LE_ACTIVE);
+    write_bus_strobing(~indicators,
+        INDICATORS_LATCH_ENABLE_PIN,
+        INDICATORS_LATCH_ENABLE_ACTIVE);
 }
 
 void init_bus(void) {
     set_bus_idle();
-    init_pin(SENSE_OE_PIN, !SENSE_OE_ACTIVE);
-
-    // toggle indicator latch to switch the indicators off
-    indicators = IND_WAIT;
-    update_indicators();
+    init_pin(SENSE_ENABLE_PIN, !SENSE_ENABLE_ACTIVE);
+    init_pin(INDICATORS_LATCH_ENABLE_PIN, !INDICATORS_LATCH_ENABLE_ACTIVE);
 }
 
 void keyboard_pre_init_kb(void) {
@@ -99,31 +108,41 @@ void keyboard_pre_init_kb(void) {
     init_pin(PIEZO_PIN, !PIEZO_ACTIVE);
     init_pin(LOCK_LED_PIN, !LOCK_LED_ACTIVE);
     init_pin(CAPS_LED_PIN, !CAPS_LED_ACTIVE);
+    indicators = IND_WAIT | IND_CAR;
+    // update_indicators();
+
+    write_bus(~indicatoras);
+    set_bus_output();
+    wait_ms(1);
+    write_pin(INDICATORS_LATCH_ENABLE_PIN, INDICATORS_LATCH_ENABLE_ACTIVE);
+    wait_ms(1);
+    toggle_pin(INDICATORS_LATCH_ENABLE_PIN);
+
+    wait_ms(1000);
 
     keyboard_pre_init_user();
 }
 
-bool shutdown_kb(bool jump_to_bootloader) {
-    xprintf("Shutdown user!\n");
-    if (!shutdown_user(jump_to_bootloader)) {
+bool shutdown_kb(bool gonna_jump_to_bootloader) {
+    if (!shutdown_user(gonna_jump_to_bootloader)) {
         return false;
     }
-    xprintf("Shutdown keyboard!\n");
+    if (gonna_jump_to_bootloader) {
+        xprintf("Preparing for bootloader!\n");
+    } else {
+        xprintf("Preparing for restart!\n");
+    }
     write_pin(POWER_LED_PIN, !POWER_LED_ACTIVE);
     write_pin(LOCK_LED_PIN, !LOCK_LED_ACTIVE);
     write_pin(CAPS_LED_PIN, !CAPS_LED_ACTIVE);
-    indicators = IND_CAR;
+    indicators = 0;
     update_indicators();
     return true;
 }
 
 #ifdef CAPS_WORD_ENABLE
 void caps_word_set_user(bool active) {
-    if (active) {
-        write_pin(CAPS_LED_PIN, CAPS_LED_ACTIVE);
-    } else {
-        write_pin(CAPS_LED_PIN, !CAPS_LED_ACTIVE);
-    }
+    write_pin(CAPS_LED_PIN, active == CAPS_LED_ACTIVE);
 }
 #endif
 

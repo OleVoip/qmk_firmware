@@ -59,8 +59,9 @@ static inline uint8_t read_bus_strobing(pin_t strobe, bool active) {
 }
 
 static inline void write_bus_strobing(uint8_t data, pin_t strobe, bool active) {
-    write_bus(~data);
+    write_bus(data);
     set_bus_output();
+    wait_for_bus();             // data are accepted either during this wait
     write_pin(strobe, active);  // depending on the receiving component,
     wait_for_bus();             // data are accepted either during this wait
     write_pin(strobe, !active); // or at this flank

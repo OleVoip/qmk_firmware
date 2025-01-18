@@ -39,7 +39,7 @@ FCONST uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *
  * 99   00      01    02    03     04    05    06    07     08      09     10      11      12      13      14    |47      48      49     |51     52      53      54 */
     [KM_DEFAULT] = LAYOUT_full(
-        KC_ESC, KC_F1,KC_F2,KC_F3, KC_F4,KC_F5,KC_F6,KC_F7, KC_F8,  KC_F9, KC_F10, KC_F11, KC_F12, X, QK_MACRO_0, KC_PSCR,KC_SCRL,KC_PAUS,X,     X,      X,      X,       // G
+        KC_ESC, KC_F1,KC_F2,KC_F3, KC_F4,KC_F5,KC_F6,KC_F7, KC_F8,  KC_F9, KC_F10, KC_F11, KC_F12, X, QK_MACRO_0, KC_PSCR,KC_SCRL,KC_PAUS,X,     X,      X,      QK_RBT,  // G
                                                                                                                   X,      X,      X,      X,     X,      X,      X,       // F
         CW_TOGG,n(1), n(2), n(3),  n(4), n(5), n(6), n(7),  n(8),   n(9),  n(0),   n(MINS),n(CIRC),KC_BSPC,KC_DEL,KC_INS, KC_HOME,KC_PGUP,KC_NUM,KC_PSLS,KC_PAST,KC_PMNS, // E
 KC_LALT,KC_TAB, n(Q), n(W), n(E),  n(R), n(T), n(Z), n(U),  n(I),   n(O),  n(P),   n(AT),  n(LBRC),KC_RALT,       KC_PGUP,KC_UP,  KC_PGDN,KC_P7, KC_P8,  KC_P9,  KC_PPLS, // D
@@ -263,7 +263,7 @@ FCONST two_key_mapping_t any_order_combinations[] = {
     {n(DQUO), n(Y),    255, 0x00FF}, // ÿ
 };
 
-void keyboard_gre_init_user(void) {
+void keyboard_pre_init_user(void) {
     debug_config.enable = true;
     debug_config.matrix = true;
     debug_config.keyboard = true;
