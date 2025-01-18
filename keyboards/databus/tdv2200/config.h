@@ -12,7 +12,6 @@
 #include "preconfig.h"
 
 #define NO_EEPROM
-#define USB_WAIT_FOR_ENUMERATION
 #define DEBUG_MATRIX_SCAN_RATE
 
 #define BUS_WAIT_CYCLES 20

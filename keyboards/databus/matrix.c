@@ -57,6 +57,7 @@ __attribute__((constructor)) void maybe_bootloader(void) {
     uint8_t signal = read_sense_lines(driver(0));
     toggle_pin(SENSE_ENABLE_PIN);
     if (signal) {
+        indicate_bootloader();
         bootloader_jump();
     }
 }

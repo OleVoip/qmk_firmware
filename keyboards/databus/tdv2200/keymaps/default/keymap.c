@@ -11,6 +11,13 @@
 #define X       KC_NO
 #define MO_SFT  MO(KM_SHIFT)
 
+enum custom_keycodes {
+    KB_LA1 = SAFE_RANGE,
+    KB_LA2,
+    KB_LA3,
+    KB_LA4
+};
+
 // clang-format off
 
 /**
@@ -22,7 +29,7 @@ FCONST uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * │   ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬─────┐ ┌───┬───┬───┐   ┌───┬───┬───┬───┐   │
  * │ G │ESC│F1 │F2 │F3 │F4 │F5 │F6 │F7 │F8 │F9 │F10│F11│F12│   │     │ │PRT│SCR│PAU│   │   │   │   │BT │ G │
  * │   └───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴─────┘ ├───┼───┼───┤   ├───┼───┼───┼───┤   │
- * │ F                                                                 │   │   │   │   │   │   │   │   │ F │
+ * │ F                                                                 │   │   │   │   │LA1│LA2│LA3│LA4│ F │
  * │   ┌─────┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐ ├───┼───┼───┤   ├───┼───┼───┼───┤   │
  * │ E │ CAPS│ 1!│ 2"│ 3#│ 4$│ 5%│ 6&│ 7'│ 8(│ 9)│ 0_│ -=│ ^~│BS │DEL│ │INS│   │   │   │NUM│SLS│AST│MNS│ E │
  * │   ├───┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┤ ├───┼───┼───┤   ├───┼───┼───┼───┤   │
@@ -40,7 +47,7 @@ FCONST uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * 99   00      01    02    03     04    05    06    07     08      09     10      11      12      13      14    |47      48      49     |51     52      53      54 */
     [KM_DEFAULT] = LAYOUT_full(
         KC_ESC, KC_F1,KC_F2,KC_F3, KC_F4,KC_F5,KC_F6,KC_F7, KC_F8,  KC_F9, KC_F10, KC_F11, KC_F12, X, QK_MACRO_0, KC_PSCR,KC_SCRL,KC_PAUS,X,     X,      X,      QK_RBT,  // G
-                                                                                                                  X,      X,      X,      X,     X,      X,      X,       // F
+                                                                                                                  X,      X,      X,      KB_LA1,KB_LA2, KB_LA3, KB_LA4,  // F
         CW_TOGG,n(1), n(2), n(3),  n(4), n(5), n(6), n(7),  n(8),   n(9),  n(0),   n(MINS),n(CIRC),KC_BSPC,KC_DEL,KC_INS, KC_HOME,KC_PGUP,KC_NUM,KC_PSLS,KC_PAST,KC_PMNS, // E
 KC_LALT,KC_TAB, n(Q), n(W), n(E),  n(R), n(T), n(Z), n(U),  n(I),   n(O),  n(P),   n(AT),  n(LBRC),KC_RALT,       KC_PGUP,KC_UP,  KC_PGDN,KC_P7, KC_P8,  KC_P9,  KC_PPLS, // D
 KC_LCTL,KC_CAPS,n(A), n(S), n(D),  n(F), n(G), n(H), n(J),  n(K),   n(L),  n(SCLN),n(COLN),n(RBRC),KC_ENT,        KC_LEFT,KC_DOWN,KC_RGHT,KC_P4, KC_P5,  KC_P6,  X,       // C
@@ -269,6 +276,37 @@ void keyboard_pre_init_user(void) {
     debug_config.keyboard = true;
 }
 
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch(keycode) {
+
+        case KB_LA1 ... KB_LA4: // KVM: switch host 1..4
+            if (record->event.pressed) {
+                tap_code16(KC_SCRL);
+                tap_code16(KC_SCRL);
+                tap_code16(KC_1 + (keycode - KB_LA1));
+                tap_code16(KC_ENTER);
+            }
+            return false;
+
+#ifdef CAPS_WORD_ENABLE
+        case n(MINS):
+            if (is_caps_word_on()){
+                keycode = n(UNDS);
+                if (record->event.pressed){
+                    register_code16(keycode);
+                } else {
+                    unregister_code16(keycode);
+                }
+            }
+            return false;
+#endif
+
+        default:
+            return true;
+    }
+}
+
+#ifdef CAPS_WORD_ENABLE
 bool caps_word_press_user(uint16_t keycode) {
     switch (keycode) {
         case KC_A ... KC_Z:
@@ -286,5 +324,6 @@ bool caps_word_press_user(uint16_t keycode) {
     }
     return true;
 }
+#endif
 
 // .

@@ -20,4 +20,9 @@ extern const labelmap_t key_position_labels;
  */
 extern void init_bus(void);
 
+/**
+* \brief Indicate that the bootloader is taking control.
+*/
+extern void indicate_bootloader(void);
+
 // .

@@ -5,6 +5,8 @@
 #include "../databus-kb.h"
 #undef extern
 
+#include <usb_util.h>
+
 #include "../databus.h"
 
 // clang-format off
@@ -81,8 +83,8 @@ FCONST labelmap_t key_position_labels = {
 volatile uint8_t indicators = 0;
 #define IND_ERROR (1<<7)
 #define IND_WAIT  (1<<6)
-#define IND_LINE  (1<<5)
-#define IND_CAR   (1<<4)
+#define IND_CAR   (1<<5)
+#define IND_LINE  (1<<4)
 #define IND_L4    (1<<3)
 #define IND_L3    (1<<2)
 #define IND_L2    (1<<1)
@@ -97,30 +99,58 @@ static inline void update_indicators(void) {
         INDICATORS_LATCH_ENABLE_ACTIVE);
 }
 
+void indicate_bootloader(void) {
+    indicators = IND_CAR;
+    update_indicators();
+};
+
 void init_bus(void) {
     set_bus_idle();
     init_pin(SENSE_ENABLE_PIN, !SENSE_ENABLE_ACTIVE);
     init_pin(INDICATORS_LATCH_ENABLE_PIN, !INDICATORS_LATCH_ENABLE_ACTIVE);
 }
 
+void sound_klick(void) {
+    write_pin(PIEZO_PIN, PIEZO_ACTIVE);
+    wait_us(20);
+    toggle_pin(PIEZO_PIN);
+}
+
 void keyboard_pre_init_kb(void) {
-    init_pin(POWER_LED_PIN, !POWER_LED_ACTIVE);
+    init_pin(POWER_LED_PIN,POWER_LED_ACTIVE);
+    init_pin(LOCK_LED_PIN, LOCK_LED_ACTIVE);
+    init_pin(CAPS_LED_PIN, CAPS_LED_ACTIVE);
+    indicators = ~0;
+    update_indicators();
+
     init_pin(PIEZO_PIN, !PIEZO_ACTIVE);
-    init_pin(LOCK_LED_PIN, !LOCK_LED_ACTIVE);
-    init_pin(CAPS_LED_PIN, !CAPS_LED_ACTIVE);
-    indicators = IND_WAIT | IND_CAR;
-    // update_indicators();
-
-    write_bus(~indicatoras);
-    set_bus_output();
-    wait_ms(1);
-    write_pin(INDICATORS_LATCH_ENABLE_PIN, INDICATORS_LATCH_ENABLE_ACTIVE);
-    wait_ms(1);
-    toggle_pin(INDICATORS_LATCH_ENABLE_PIN);
-
-    wait_ms(1000);
+    sound_klick();
 
     keyboard_pre_init_user();
+}
+
+void housekeeping_task_kb(void) {
+    static bool last_state = false;
+    static bool first_connection = true;
+    bool connected = usb_connected_state();
+    if (connected != last_state) {
+        last_state = connected;
+        sound_klick();
+        if (connected) {
+            if (first_connection) {
+                indicators = 0;
+                write_pin(LOCK_LED_PIN, !LOCK_LED_ACTIVE);
+                write_pin(CAPS_LED_PIN, !CAPS_LED_ACTIVE);
+            } else {
+                indicators &= ~IND_WAIT;
+            }
+            write_pin(POWER_LED_PIN, POWER_LED_ACTIVE);
+        } else {
+            indicators |= IND_WAIT;
+            write_pin(POWER_LED_PIN, !POWER_LED_ACTIVE);
+        }
+        update_indicators();
+    }
 }
 
 bool shutdown_kb(bool gonna_jump_to_bootloader) {
@@ -129,14 +159,13 @@ bool shutdown_kb(bool gonna_jump_to_bootloader) {
     }
     if (gonna_jump_to_bootloader) {
         xprintf("Preparing for bootloader!\n");
+        indicate_bootloader();
     } else {
         xprintf("Preparing for restart!\n");
     }
     write_pin(POWER_LED_PIN, !POWER_LED_ACTIVE);
     write_pin(LOCK_LED_PIN, !LOCK_LED_ACTIVE);
     write_pin(CAPS_LED_PIN, !CAPS_LED_ACTIVE);
-    indicators = 0;
-    update_indicators();
     return true;
 }
 
