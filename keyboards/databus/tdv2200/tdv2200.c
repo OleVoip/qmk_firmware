@@ -7,30 +7,34 @@
 #undef extern
 
 // clang-format off
-/*
- * Map for LAYOUT_all, with all positions foreseen on the PCB.
- * ST1 is a jumper beside the space bar, AL1 and AL2 are keylocks
- * (actually in the top right corner), both could be used as
- * dip switches.
- *
- *  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14      47  48  49      51  52  53  54
- *┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬─────┐ ┌───┬───┬───┐ ─ ┌───┬───┬───┬───┐
- *│G00│G01│G02│G03│G04│G05│G05│G07│G08│G09│G10│G11│G12│G13│G14  │ │G47│G48│G49│G50│G51│G52│G53│G54│ G
- *└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴─────┘ ├───┼───┼───┤ ─ ├───┼───┼───┼───┤
- *                                                                │F47│F48│F49│F50│F51│F52│F53│F54│ F
- *┌─────┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐ ├───┼───┼───┤ ─ ├───┼───┼───┼───┤
- *│  E00│E01│E02│E03│E04│E05│E06│E07│E08│E09│E10│E11│E12│E13│E14│ │E47│E48│E49│E50│E51│E52│E53│E54│ E
- *├───┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┤ ├───┼───┼───┤ ─ ├───┼───┼───┼───┤
- *│D99│D00│D01│D02│D03│D04│D05│D06│D07│D08│D09│D10│D11│D12│D13  │ │D47│D48│D49│D50│D51│D52│D53│D54│ D
- *├───┼───┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴───┴┬──┴┬──┴┬──┴┬──┴─┬───┤ ├───┼───┼───┤ ─ ├───┼───┼───┼───┤
- *│C99│ C00│C01│C02│C03│C04│C05│C06│C07│C08│C09│C10│C11│C12 │C13│ │C47│C48│C49│C50│C51│C52│C53│C54│ C
- *├───┴──┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴────┤   │ ├───┼───┼───┤ ─ ├───┼───┼───┼───┤
- *│  B99 │B00│B01│B02│B03│B04│B05│B06│B07│B08│B09│B10│ B11  │   │ │B47│B48│B49│B50│B51│B52│B53│B54│ B
- *└──────┴───┴───┼───┴───┴───┴───┴───┴───┴───┴───┼┬──┴─┬───┬┴──┬┘ ├───┼───┼───┤ ─ ├───┴───┼───┤   │
- *               │              A05              │ST1   AL1 AL2   │A47│A48│A49│A50│  A51  │A53│   │ A
- *               └───────────────────────────────┘┘    └ ─ ┴ ─ ┘  └───┴───┴───┘ ─ └───────┴───┴───┘
- */
 
+/** Map of all foreseen key positions on the PCB
+ * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬─────┐ ┌───┬───┬───┐ ─ ┌───┬───┬───┬───┐
+ * │G00│G01│G02│G03│G04│G05│G05│G07│G08│G09│G10│G11│G12│G13│G14  │ │G47│G48│G49│G50│G51│G52│G53│G54│
+ * └───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴─────┘ ├───┼───┼───┤ ─ ├───┼───┼───┼───┤
+ *                                                                 │F47│F48│F49│F50│F51│F52│F53│F54│
+ * ┌─────┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐ ├───┼───┼───┤ ─ ├───┼───┼───┼───┤
+ * │  E00│E01│E02│E03│E04│E05│E06│E07│E08│E09│E10│E11│E12│E13│E14│ │E47│E48│E49│E50│E51│E52│E53│E54│
+ * ├───┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┤ ├───┼───┼───┤ ─ ├───┼───┼───┼───┤
+ * │D99│D00│D01│D02│D03│D04│D05│D06│D07│D08│D09│D10│D11│D12│D13  │ │D47│D48│D49│D50│D51│D52│D53│D54│
+ * ├───┼───┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴───┴┬──┴┬──┴┬──┴┬──┴─┬───┤ ├───┼───┼───┤ ─ ├───┼───┼───┼───┤
+ * │C99│ C00│C01│C02│C03│C04│C05│C06│C07│C08│C09│C10│C11│C12 │C13│ │C47│C48│C49│C50│C51│C52│C53│C54│
+ * ├───┴──┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴────┤   │ ├───┼───┼───┤ ─ ├───┼───┼───┼───┤
+ * │  B99 │B00│B01│B02│B03│B04│B05│B06│B07│B08│B09│B10│ B11  │   │ │B47│B48│B49│B50│B51│B52│B53│B54│
+ * └──────┴───┴───┼───┴───┴───┴───┴───┴───┴───┴───┼┬──┴─┬───┬┴──┬┘ ├───┼───┼───┤ ─ ├───┴───┼───┤   │
+ *                │              A05              │ST1   AL1 AL2   │A47│A48│A49│A50│  A51  │A53│   │
+ *                └───────────────────────────────┘┘    └ ─ ┴ ─ ┘  └───┴───┴───┘ ─ └───────┴───┴───┘ */
+/**
+ * The letter–number combinations denote the position according to
+ * ISO-4169:1979, the standard key numbering system for layout charts
+ * of that period. These labels are printed on the PCB, too, but without
+ * leading zeroes with single-digit column numbers.
+ * Deriving from the standard, keys that span several grid positions
+ * are only labelled with one of them, e.g., A05 instead of A02–09.
+ * ST1 is a jumper beside the space bar, AL1 and AL2 are keylocks
+ * (actually in the top right corner); these could be used like dip
+ * switches.
+ */
 FCONST labelmap_t key_position_labels = {
     //  0(A)   1(B)   2(C)   3(D)   4(E)   5(F)   6(G)   7(H)
     {"G00", "E01", "D01", "C01", "B00", "F50", "C54", "x07"}, // 0
@@ -69,149 +73,16 @@ union {
     };
 } indicators;
 
-typedef struct {
-    keycode_t kc1, kc2;
-    uint8_t altCode;
-    uint16_t utf16;
-} compose_t;
-
-compose_t straight_combinations[] = {
-    {k(S),    k(M),      0x25BA}, // ☺
-    {k(B),    k(S),      2, 0x263B}, // ☻
-    {k(H),    k(T),      3, 0x2665}, // ♥
-    {k(D),    k(M),      4, 0x2666}, // ♦
-    {k(C),    k(B),      5, 0x2663}, // ♣
-    {k(S),    k(P),      6, 0x2660}, // ♠
-    {k(C),    k(R),      9, 0x25CB}, // ○
-    {k(M),    k(S),     11, 0x2642}, // ♂
-    {k(V),    k(S),     12, 0x2640}, // ♀
-    {k(E),    k(N),     13, 0x266A}, // ♪
-    {k(E),    k(S),     14, 0x266B}, // ♫
-    {k(S),    k(N),     15, 0x263C}, // ☼
-    {k(R),    k(P),     16, 0x25BA}, // ►
-    {k(L),    k(P),     17, 0x25C4}, // ◄
-    {k(U),    k(D),     18, 0x2195}, // ↕
-    {k(D),    k(EXCL),  19, 0x203C}, // ‼
-    {k(EQL),  k(EQL),   22, 0x25AC}, // ▬
-    {k(VERT), k(B),     23, 0x21A8}, // ↨
-    {k(VERT), k(CIRC),  24, 0x2195}, // ↑
-    {k(VERT), k(V),     25, 0x2193}, // ↓
-    {k(MNS),  k(LABK),  26, 0x2192}, // →
-    {k(RABK), k(MNS),   27, 0x2190}, // ←
-    {k(LABK), k(RABK),  29, 0x2194}, // ↔
-    {k(U),    k(P),     30, 0x25B2}, // ▲
-    {k(D),    k(P),     31, 0x25BC}, // ▼
-    {k(F),    k(F),    131, 0x0192}, // ƒ
-    {k(DOT),  k(DOT),  133, 0x2026}, // …
-    {k(M),    k(CIRC), 136, 0x02C6}, // ˆ
-    {k(PERC), k(O),    137, 0x2030}, // ‰
-    {k(V),    s(S),    138, 0x0160}, // Š
-    {k(DOT),  k(LABK), 139, 0x2039}, // ‹
-    {s(O),    s(E),    140, 0x0152}, // Œ
-    {k(V),    s(Z),    142, 0x017D}, // Ž
-    {k(DOT),  k(EQL),  149, 0x2022}, // •
-    {k(MNS),  k(DOT),  150, 0x2013}, // –
-    {k(MNS),  k(EQL),  151, 0x2014}, // —
-    {k(T),    k(M),    153, 0x2122}, // ™
-    {k(V),    k(S),    154, 0x0161}, // š
-    {k(DOT),  k(RABK), 155, 0x203A}, // ›
-    {k(O),    k(E),    156, 0x0153}, // œ
-    {k(V),    k(Z),    158, 0x017E}, // ž
-    {k(N),    k(B),    160, 0x00A0}, // nbsp
-    {k(EXCL), k(EXCL), 161, 0x00A1}, // ¡
-    {k(EXCL), k(CIRC), 166, 0x00A6}, // ¦
-    {k(DQUO), k(DQUO), 168, 0x00A8}, // ¨
-    {k(LABK), k(LABK), 171, 0x00AB}, // «
-    {k(MNS),  k(COMM), 172, 0x00AC}, // ¬
-    {k(O),    k(O),    176, 0x00B0}, // °
-    {k(PLUS), k(MNS),  177, 0x00B1}, // ±
-    {k(QUOT), k(QUOT), 180, 0x00B4}, // ´
-    {k(SLSH), k(U),    181, 0x00B5}, // μ
-    {k(p),    k(EXCL), 182, 0x00B6}, // ¶
-    {k(COMM), k(COMM), 184, 0x00B8}, // ¸
-    {k(RABK), k(RABK), 187, 0x00BB}, // »
-    {k(1),    k(4),    188, 0x00BC}, // ¼
-    {k(1),    k(2),    189, 0x00BD}, // ½
-    {K(3),    k(4),    190, 0x00BE}, // ¾
-    {k(QUES), k(QUES), 191, 0x00BF}, // ¿
-    {s(A),    s(E),    198, 0x00C6}, // Æ
-    {s(C),    k(COMM), 199, 0x00C7}, // Ç
-    {s(D),    s(H),    208, 0x00D0}, // Ð
-    {k(X),    k(X),    215, 0x00D7}, // ×
-    {s(T),    s(H),    222, 0x00DE}, // Þ
-    {k(S),    k(S),    223, 0x00DF}, // ß
-    {k(D),    k(H),    240, 0x00F0}, // ð
-    {k(T),    k(H),    254, 0x00FE}, // þ
-};
-
-compose_t any_order_combinations[] = {
-    {k(S),    k(M),      0x25BA}, // ☺
-    {k(B),    k(S),      2, 0x263B}, // ☻
-    {k(H),    k(T),      3, 0x2665}, // ♥
-    {k(D),    k(M),      4, 0x2666}, // ♦
-    {k(C),    k(B),      5, 0x2663}, // ♣
-    {k(S),    k(P),      6, 0x2660}, // ♠
-    {k(C),    k(R),      9, 0x25CB}, // ○
-    {k(M),    k(S),     11, 0x2642}, // ♂
-    {k(V),    k(S),     12, 0x2640}, // ♀
-    {k(E),    k(N),     13, 0x266A}, // ♪
-    {k(E),    k(S),     14, 0x266B}, // ♫
-    {k(S),    k(N),     15, 0x263C}, // ☼
-    {k(R),    k(P),     16, 0x25BA}, // ►
-    {k(L),    k(P),     17, 0x25C4}, // ◄
-    {k(U),    k(D),     18, 0x2195}, // ↕
-    {k(D),    k(EXCL),  19, 0x203C}, // ‼
-    {k(EQL),  k(EQL),   22, 0x25AC}, // ▬
-    {k(VERT), k(B),     23, 0x21A8}, // ↨
-    {k(VERT), k(CIRC),  24, 0x2195}, // ↑
-    {k(VERT), k(V),     25, 0x2193}, // ↓
-    {k(MNS),  k(LABK),  26, 0x2192}, // →
-    {k(RABK), k(MNS),   27, 0x2190}, // ←
-    {k(LABK), k(RABK),  29, 0x2194}, // ↔
-    {k(U),    k(P),     30, 0x25B2}, // ▲
-    {k(D),    k(P),     31, 0x25BC}, // ▼
-    {k(F),    k(F),    131, 0x0192}, // ƒ
-    {k(DOT),  k(DOT),  133, 0x2026}, // …
-    {k(M),    k(CIRC), 136, 0x02C6}, // ˆ
-    {k(PERC), k(O),    137, 0x2030}, // ‰
-    {k(V),    s(S),    138, 0x0160}, // Š
-    {k(DOT),  k(LABK), 139, 0x2039}, // ‹
-    {s(O),    s(E),    140, 0x0152}, // Œ
-    {k(V),    s(Z),    142, 0x017D}, // Ž
-    {k(DOT),  k(EQL),  149, 0x2022}, // •
-    {k(MNS),  k(DOT),  150, 0x2013}, // –
-    {k(MNS),  k(EQL),  151, 0x2014}, // —
-    {k(T),    k(M),    153, 0x2122}, // ™
-    {k(V),    k(S),    154, 0x0161}, // š
-    {k(DOT),  k(RABK), 155, 0x203A}, // ›
-    {k(O),    k(E),    156, 0x0153}, // œ
-    {k(V),    k(Z),    158, 0x017E}, // ž
-    {k(N),    k(B),    160, 0x00A0}, // nbsp
-    {k(EXCL), k(EXCL), 161, 0x00A1}, // ¡
-    {k(EXCL), k(CIRC), 166, 0x00A6}, // ¦
-    {k(DQUO), k(DQUO), 168, 0x00A8}, // ¨
-    {k(LABK), k(LABK), 171, 0x00AB}, // «
-    {k(MNS),  k(COMM), 172, 0x00AC}, // ¬
-    {k(O),    k(O),    176, 0x00B0}, // °
-    {k(PLUS), k(MNS),  177, 0x00B1}, // ±
-    {k(QUOT), k(QUOT), 180, 0x00B4}, // ´
-    {k(SLSH), k(U),    181, 0x00B5}, // μ
-    {k(p),    k(EXCL), 182, 0x00B6}, // ¶
-    {k(COMM), k(COMM), 184, 0x00B8}, // ¸
-    {k(RABK), k(RABK), 187, 0x00BB}, // »
-    {k(1),    k(4),    188, 0x00BC}, // ¼
-    {k(1),    k(2),    189, 0x00BD}, // ½
-    {K(3),    k(4),    190, 0x00BE}, // ¾
-    {k(QUES), k(QUES), 191, 0x00BF}, // ¿
-    {s(A),    s(E),    198, 0x00C6}, // Æ
-    {s(C),    k(COMM), 199, 0x00C7}, // Ç
-    {s(D),    s(H),    208, 0x00D0}, // Ð
-    {k(X),    k(X),    215, 0x00D7}, // ×
-    {s(T),    s(H),    222, 0x00DE}, // Þ
-    {k(S),    k(S),    223, 0x00DF}, // ß
-    {k(D),    k(H),    240, 0x00F0}, // ð
-    {k(T),    k(H),    254, 0x00FE}, // þ
-};
+/**
+ * \brief Mapping of two-key combinations to character or another key
+ * Two-key combination to a Windows alt code and a unicode character
+ * or, if the alt code is zero, another keycode.
+ */
+typedef struct two_key_mapping_t {
+    uint16_t kc1, kc2;
+    uint8_t  alt_code;
+    uint16_t utf_key;
+} two_key_mapping_t;
 
 // Port B: 8-bit data bus; it has a write-only latch that sinks
 // the currents of 8 LED indicators and a read-only buffer for reading
