@@ -5,6 +5,8 @@
 #include "../../../databus.h"
 #include "keymap.h"
 
+keycode_t compose_key = KC_CAPS;
+
 #define n(key) DE_##key // national prefix, change according to host keymap
 #define s(key) S(KC_##key)
 
@@ -12,7 +14,8 @@
 #define MO_SFT  MO(KM_SHIFT)
 
 enum custom_keycodes {
-    KB_LA1 = SAFE_RANGE,
+    KB_COMP = SAFE_RANGE,
+    KB_LA1,
     KB_LA2,
     KB_LA3,
     KB_LA4
@@ -23,7 +26,7 @@ enum custom_keycodes {
 /**
 * \brief Keymaps for the 'International' layout, which is bit-paired ISO.
 */
-FCONST uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+FCONST keycode_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* ┌───────────────────────────────────────────────────────────────────────────────────────────────────────┐
  * │    0   1   2   3   4   5   6   7   8   9  10  11  12  13  14       47  48  49  50  51  52  53  54     │
  * │   ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬─────┐ ┌───┬───┬───┐   ┌───┬───┬───┬───┐   │
@@ -50,7 +53,7 @@ FCONST uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                                                   X,      X,      X,      KB_LA1,KB_LA2, KB_LA3, KB_LA4,  // F
         CW_TOGG,n(1), n(2), n(3),  n(4), n(5), n(6), n(7),  n(8),   n(9),  n(0),   n(MINS),n(CIRC),KC_BSPC,KC_DEL,KC_INS, KC_HOME,KC_PGUP,KC_NUM,KC_PSLS,KC_PAST,KC_PMNS, // E
 KC_LALT,KC_TAB, n(Q), n(W), n(E),  n(R), n(T), n(Z), n(U),  n(I),   n(O),  n(P),   n(AT),  n(LBRC),KC_RALT,       KC_PGUP,KC_UP,  KC_PGDN,KC_P7, KC_P8,  KC_P9,  KC_PPLS, // D
-KC_LCTL,KC_CAPS,n(A), n(S), n(D),  n(F), n(G), n(H), n(J),  n(K),   n(L),  n(SCLN),n(COLN),n(RBRC),KC_ENT,        KC_LEFT,KC_DOWN,KC_RGHT,KC_P4, KC_P5,  KC_P6,  X,       // C
+KC_LCTL,KB_COMP,n(A), n(S), n(D),  n(F), n(G), n(H), n(J),  n(K),   n(L),  n(SCLN),n(COLN),n(RBRC),KC_ENT,        KC_LEFT,KC_DOWN,KC_RGHT,KC_P4, KC_P5,  KC_P6,  X,       // C
 MO_SFT ,n(BSLS),n(Y), n(X), n(C),  n(V), n(B), n(N), n(M), n(COMM), n(DOT),n(SLSH),MO_SFT,                        KC_HOME,X,      KC_END, KC_P1, KC_P2,  KC_P3,  KC_PENT, // B
                                          KC_SPC,                                   KC_NO,  KC_NO,                 X,      X,      X,      KC_P0,         KC_PDOT       ), // A
     [KM_SHIFT] = LAYOUT_full(
@@ -99,7 +102,7 @@ KC_LSFT,KC_BSLS,KC_Z,KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM,KC_DOT,KC_SLSH,
  * Also mappings where both keys are the same go here as only one
  * combination needs to be checked
  */
-FCONST two_key_mapping_t fixed_sequence_combinations[] = {
+FCONST two_key_seq_t fixed_seqs[] = {
     {n(S),    n(M),      1, 0x25BA}, // ☺
     {n(B),    n(S),      2, 0x263B}, // ☻
     {n(H),    n(T),      3, 0x2665}, // ♥
@@ -157,7 +160,7 @@ FCONST two_key_mapping_t fixed_sequence_combinations[] = {
  * \brief Mapping of two-key combinations that may be entered in any order
  * Meaning that also the reversed order needs to be considered.
  */
-FCONST two_key_mapping_t any_order_combinations[] = {
+FCONST two_key_seq_t any_order_seqs[] = {
     {n(R),    n(P),     16, 0x25BA}, // ►
     {n(L),    n(P),     17, 0x25C4}, // ◄
     {n(U),    n(D),     18, 0x2195}, // ↕
@@ -270,14 +273,73 @@ FCONST two_key_mapping_t any_order_combinations[] = {
     {n(DQUO), n(Y),    255, 0x00FF}, // ÿ
 };
 
+static bool composing;
+static keycode_t prev_keycode;
+
 void keyboard_pre_init_user(void) {
     debug_config.enable = true;
     debug_config.matrix = true;
     debug_config.keyboard = true;
+
+    composing = false;
+    prev_keycode = 0;
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+const two_key_seq_t* find_seq(keycode_t kc1, keycode_t kc2) {
+    const two_key_seq_t* mapping = &fixed_seqs[0];
+    for (int8_t n = sizeof(fixed_seqs) / sizeof(two_key_seq_t); --n;) {
+        if (mapping->kc1 == kc1 && (!kc2 || mapping->kc2 == kc2)) {
+            return mapping;
+        }
+        mapping++;
+    }
+
+    mapping = &any_order_seqs[0];
+    for (int8_t n = sizeof(any_order_seqs) / sizeof(two_key_seq_t); --n;) {
+        if ((mapping->kc1 == kc1 && (!kc2 || mapping->kc2 == kc2)) ||
+            (mapping->kc2 == kc1 && (!kc2 || mapping->kc1 == kc2))) {
+            return mapping;
+        }
+        mapping++;
+    }
+    return NULL;
+}
+
+static inline bool process_record_composing(
+    keycode_t keycode, keyrecord_t *record) {
+    if (!record->event.pressed){
+        return false;
+    }
+    const two_key_seq_t* seq = find_seq(keycode, prev_keycode);
+    if (seq == NULL) {
+        composing = false;
+        if (compose_key != KC_NO) {
+            tap_code16(compose_key);
+        }
+        if (prev_keycode) {
+            tap_code16(prev_keycode);
+        }
+        return true;
+    }
+    if (!prev_keycode) {
+        prev_keycode = keycode;
+    } else {
+        composing = false;
+        // TODO: apply alt-code or unicode
+    }
+    return false;
+}
+
+bool process_record_user(keycode_t keycode, keyrecord_t *record) {
+    if (composing && !process_record_composing(keycode, record)) {
+        return false;
+    }
     switch(keycode) {
+        case KB_COMP:
+            if (!record->event.pressed) {
+                composing = true;
+            }
+            return false;
 
         case KB_LA1 ... KB_LA4: // KVM: switch host 1..4
             if (record->event.pressed) {
@@ -307,7 +369,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 #ifdef CAPS_WORD_ENABLE
-bool caps_word_press_user(uint16_t keycode) {
+bool caps_word_press_user(keycode_t keycode) {
     switch (keycode) {
         case KC_A ... KC_Z:
             add_weak_mods(MOD_BIT(KC_LSFT)); // apply shift
