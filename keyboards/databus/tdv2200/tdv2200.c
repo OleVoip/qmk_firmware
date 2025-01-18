@@ -1,14 +1,15 @@
 // Created/amended by OleVoip 2024.
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "../databus.h"
 #define extern
 #include "../databus-kb.h"
 #undef extern
 
+#include "../databus.h"
+
 // clang-format off
 
-/** Map of all foreseen key positions on the PCB
+/** Map of all foreseen key positions on the PCB.
  * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬─────┐ ┌───┬───┬───┐ ─ ┌───┬───┬───┬───┐
  * │G00│G01│G02│G03│G04│G05│G05│G07│G08│G09│G10│G11│G12│G13│G14  │ │G47│G48│G49│G50│G51│G52│G53│G54│
  * └───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴─────┘ ├───┼───┼───┤ ─ ├───┼───┼───┼───┤
@@ -23,17 +24,19 @@
  * │  B99 │B00│B01│B02│B03│B04│B05│B06│B07│B08│B09│B10│ B11  │   │ │B47│B48│B49│B50│B51│B52│B53│B54│
  * └──────┴───┴───┼───┴───┴───┴───┴───┴───┴───┴───┼┬──┴─┬───┬┴──┬┘ ├───┼───┼───┤ ─ ├───┴───┼───┤   │
  *                │              A05              │ST1   AL1 AL2   │A47│A48│A49│A50│  A51  │A53│   │
- *                └───────────────────────────────┘┘    └ ─ ┴ ─ ┘  └───┴───┴───┘ ─ └───────┴───┴───┘ */
-/**
- * The letter–number combinations denote the position according to
- * ISO-4169:1979, the standard key numbering system for layout charts
- * of that period. These labels are printed on the PCB, too, but without
- * leading zeroes with single-digit column numbers.
+ *                └───────────────────────────────┘┘    └ ─ ┴ ─ ┘  └───┴───┴───┘ ─ └───────┴───┴───┘
+ */
+/** Labels mapping the matrix crossings to actual key positions.
+ * The key labels are given as they are printed on the PCB, except
+ * for the leading zeroes added to the single-digit column numbers.
+ * Generally, the letter–number combinations denote the position
+ * according to ISO-4169:1979, the standard key numbering system
+ * or layout charts of that period.
  * Deriving from the standard, keys that span several grid positions
  * are only labelled with one of them, e.g., A05 instead of A02–09.
  * ST1 is a jumper beside the space bar, AL1 and AL2 are keylocks
- * (actually in the top right corner); these could be used like dip
- * switches.
+ * (they actually sit in the top right corner); in QMK, they could
+ * serve as DIP switches.
  */
 FCONST labelmap_t key_position_labels = {
     //  0(A)   1(B)   2(C)   3(D)   4(E)   5(F)   6(G)   7(H)
@@ -58,31 +61,15 @@ FCONST labelmap_t key_position_labels = {
 
 // clang-format on
 
-union {
-    uint8_t all;
-    struct {
-        uint8_t
-            error:1,
-            wait:1,
-            line:1,
-            car:1,
-            l4:1,
-            l3:1,
-            l2:1,
-            l1:1;
-    };
-} indicators;
-
-/**
- * \brief Mapping of two-key combinations to character or another key
- * Two-key combination to a Windows alt code and a unicode character
- * or, if the alt code is zero, another keycode.
- */
-typedef struct two_key_mapping_t {
-    uint16_t kc1, kc2;
-    uint8_t  alt_code;
-    uint16_t utf_key;
-} two_key_mapping_t;
+volatile uint8_t indicators;
+#define IND_ERROR (1<<7)
+#define IND_WAIT  (1<<6)
+#define IND_LINE  (1<<5)
+#define IND_CAR   (1<<4)
+#define IND_L4    (1<<3)
+#define IND_L3    (1<<2)
+#define IND_L2    (1<<1)
+#define IND_L1    (1<<0)
 
 // Port B: 8-bit data bus; it has a write-only latch that sinks
 // the currents of 8 LED indicators and a read-only buffer for reading
@@ -95,7 +82,7 @@ typedef struct two_key_mapping_t {
 // needs PWM.
 
 static inline void update_indicators(void) {
-    write_bus_strobing(indicators.all, INDICATORS_LE_PIN, INDICATORS_LE_ACTIVE);
+    write_bus_strobing(indicators, INDICATORS_LE_PIN, INDICATORS_LE_ACTIVE);
 }
 
 void init_bus(void) {
@@ -103,7 +90,7 @@ void init_bus(void) {
     init_pin(SENSE_OE_PIN, !SENSE_OE_ACTIVE);
 
     // toggle indicator latch to switch the indicators off
-    indicators.wait = 1;
+    indicators = IND_WAIT;
     update_indicators();
 }
 
@@ -125,7 +112,7 @@ bool shutdown_kb(bool jump_to_bootloader) {
     write_pin(POWER_LED_PIN, !POWER_LED_ACTIVE);
     write_pin(LOCK_LED_PIN, !LOCK_LED_ACTIVE);
     write_pin(CAPS_LED_PIN, !CAPS_LED_ACTIVE);
-    indicators.all = 0;
+    indicators = IND_CAR;
     update_indicators();
     return true;
 }

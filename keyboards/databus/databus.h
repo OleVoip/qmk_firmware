@@ -68,4 +68,16 @@ static inline void write_bus_strobing(uint8_t data, pin_t strobe, bool active) {
     set_bus_idle();
 }
 
+
+/**
+ * \brief Mapping of two-key combinations to character or another key
+ * Two-key combination to a Windows alt code and a unicode character
+ * or, if the alt code is zero, another keycode.
+ */
+typedef struct two_key_mapping_t {
+    uint16_t kc1, kc2;
+    uint8_t  alt_code;
+    uint16_t utf_key;
+} two_key_mapping_t;
+
 // .
