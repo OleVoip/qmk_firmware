@@ -1,0 +1,363 @@
+<minus> <space>		: "~"	asciitilde # TILDE
+<space> <minus>		: "~"	asciitilde # TILDE
+<apostrophe> <apostrophe>	: "´"	acute # ACUTE ACCENT
+<greater> <space>		: "^"	asciicircum # CIRCUMFLEX ACCENT
+<space> <greater>		: "^"	asciicircum # CIRCUMFLEX ACCENT
+<o> <o>			: "°"	degree # DEGREE SIGN
+<asterisk> <0>		: "°"	degree # DEGREE SIGN
+<0> <asterisk>		: "°"	degree # DEGREE SIGN
+<minus> <asciicircum>	: "¯"	macron # MACRON
+<underscore> <space>	: "¯"	macron # MACRON
+<space> <underscore>	: "¯"	macron # MACRON
+<underscore> <underscore>	: "¯"	macron # MACRON
+<underscore> <asciicircum>	: "¯"	macron # MACRON
+<quotedbl> <space>		: "¨"	diaeresis # DIAERESIS
+<quotedbl> <quotedbl>	: "¨"	diaeresis # DIAERESIS
+<comma> <space>		: "¸"	cedilla # CEDILLA
+<space> <comma>		: "¸"	cedilla # CEDILLA
+<comma> <comma>		: "¸"	cedilla # CEDILLA
+<plus> <plus>		: "#"	numbersign # NUMBER SIGN
+<A> <T>			: "@"	at # COMMERCIAL AT
+<parenleft> <parenleft>	: "["	bracketleft # LEFT SQUARE BRACKET
+<parenright> <parenright>	: "]"	bracketright # RIGHT SQUARE BRACKET
+<parenleft> <minus>		: "{"	braceleft # LEFT CURLY BRACKET
+<minus> <parenleft>		: "{"	braceleft # LEFT CURLY BRACKET
+<parenright> <minus>	: "}"	braceright # RIGHT CURLY BRACKET
+<minus> <parenright>	: "}"	braceright # RIGHT CURLY BRACKET
+<slash> <asciicircum>	: "|"	bar # VERTICAL LINE
+<asciicircum> <slash>	: "|"	bar # VERTICAL LINE
+<V> <L>			: "|"	bar # VERTICAL LINE
+<L> <V>			: "|"	bar # VERTICAL LINE
+<v> <l>			: "|"	bar # VERTICAL LINE
+<l> <v>			: "|"	bar # VERTICAL LINE
+<L> <T>			: "<"	less # LESS-THAN
+<l> <t>			: "<"	less # LESS-THAN
+<G> <T>			: ">"	greater # GREATER-THAN
+<g> <t>			: ">"	greater # GREATER-THAN
+<o> <c>			: "©"	copyright # COPYRIGHT SIGN
+<O> <C>			: "©"	copyright # COPYRIGHT SIGN
+<C> <O>			: "©"	copyright # COPYRIGHT SIGN
+<o> <r>			: "®"	registered # REGISTERED SIGN
+<O> <R>			: "®"	registered # REGISTERED SIGN
+<R> <O>			: "®"	registered # REGISTERED SIGN
+<period> <period>		: "…"	ellipsis # HORIZONTAL ELLIPSIS
+<period> <minus>		: "·"	periodcentered # MIDDLE DOT
+<period> <asciicircum>	: "·"	periodcentered # MIDDLE DOT
+<asciicircum> <period>	: "·"	periodcentered # MIDDLE DOT
+<period> <equal>		: "•"	enfilledcircbullet # BULLET
+<exclam> <asciicircum>	: "¦"	brokenbar # BROKEN BAR
+<exclam> <exclam>		: "¡"	exclamdown # INVERTED EXCLAMATION MARK
+<plus> <minus>		: "±"	plusminus # PLUS-MINUS SIGN
+<minus> <plus>		: "±"	plusminus # PLUS-MINUS SIGN
+<question> <question>	: "¿"	questiondown # INVERTED QUESTION MARK
+<minus> <minus> <space>	: "­"	U00ad # SOFT HYPHEN
+<bar> <minus>		: "†"	U2020 # DAGGER
+<bar> <equal>		: "‡"	U2021 # DOUBLE DAGGER
+<percent> <o>		: "‰"	U2030 # PER MILLE SIGN
+<a> <e>			: "æ"	ae # LATIN SMALL LETTER AE
+<A> <E>			: "Æ"	AE # LATIN CAPITAL LETTER AE
+<o> <e>			: "œ"	oe # LATIN SMALL LIGATURE OE
+<O> <E>			: "Œ"	OE # LATIN CAPITAL LIGATURE OE
+<s> <s>			: "ß"	ssharp # LATIN SMALL LETTER SHARP S
+<less> <less>		: "«"	guillemotleft # LEFT-POINTING DOUBLE ANGLE QUOTATION MARK
+<greater> <greater>		: "»"	guillemotright # RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK
+<period> <less>		: "‹"	U2039 # SINGLE LEFT-POINTING ANGLE QUOTATION MARK
+<period> <greater>		: "›"	U203a # SINGLE RIGHT-POINTING ANGLE QUOTATION MARK
+<less> <apostrophe>		: "‘"	U2018 # LEFT SINGLE QUOTATION MARK
+<apostrophe> <less>		: "‘"	U2018 # LEFT SINGLE QUOTATION MARK
+<greater> <apostrophe>	: "’"	U2019 # RIGHT SINGLE QUOTATION MARK
+<apostrophe> <greater>	: "’"	U2019 # RIGHT SINGLE QUOTATION MARK
+<comma> <apostrophe>	: "‚"	U201a # SINGLE LOW-9 QUOTATION MARK
+<apostrophe> <comma>	: "‚"	U201a # SINGLE LOW-9 QUOTATION MARK
+<less> <quotedbl>		: "“"	U201c # LEFT DOUBLE QUOTATION MARK
+<quotedbl> <less>		: "“"	U201c # LEFT DOUBLE QUOTATION MARK
+<greater> <quotedbl>	: "”"	U201d # RIGHT DOUBLE QUOTATION MARK
+<quotedbl> <greater>	: "”"	U201d # RIGHT DOUBLE QUOTATION MARK
+<comma> <quotedbl>		: "„"	U201e # DOUBLE LOW-9 QUOTATION MARK
+<quotedbl> <comma>		: "„"	U201e # DOUBLE LOW-9 QUOTATION MARK
+<S> <bar>			: "$"	dollar # DOLLAR SIGN
+<bar> <S>			: "$"	dollar # DOLLAR SIGN
+<c> <bar>			: "¢"	cent # CENT SIGN
+<bar> <c>			: "¢"	cent # CENT SIGN
+<c> <slash>			: "¢"	cent # CENT SIGN
+<slash> <c>			: "¢"	cent # CENT SIGN
+<L> <minus>			: "£"	sterling # POUND SIGN
+<minus> <L>			: "£"	sterling # POUND SIGN
+<l> <minus>			: "£"	sterling # POUND SIGN
+<minus> <l>			: "£"	sterling # POUND SIGN
+<Y> <equal>			: "¥"	yen # YEN SIGN
+<equal> <Y>			: "¥"	yen # YEN SIGN
+<y> <equal>			: "¥"	yen # YEN SIGN
+<equal> <y>			: "¥"	yen # YEN SIGN
+<C> <equal>			: "€"	EuroSign # EURO SIGN
+<equal> <C>			: "€"	EuroSign # EURO SIGN
+<c> <equal>			: "€"	EuroSign # EURO SIGN
+<equal> <c>			: "€"	EuroSign # EURO SIGN
+<E> <equal>			: "€"	EuroSign # EURO SIGN
+<equal> <E>			: "€"	EuroSign # EURO SIGN
+<e> <equal>			: "€"	EuroSign # EURO SIGN
+<equal> <e>			: "€"	EuroSign # EURO SIGN
+<minus> <minus> <period>	: "–"	U2013 # EN DASH
+<minus> <minus> <minus>	: "—"	U2014 # EM DASH
+<numbersign> <e>		: "♪"	U266a # EIGHTH NOTE
+<numbersign> <E>		: "♫"	U266b # BEAMED EIGHTH NOTES
+<s> <o>			: "§"	section # SECTION SIGN
+<o> <s>			: "§"	section # SECTION SIGN
+<S> <O>			: "§"	section # SECTION SIGN
+<O> <S>			: "§"	section # SECTION SIGN
+<s> <exclam>		: "§"	section # SECTION SIGN
+<S> <exclam>		: "§"	section # SECTION SIGN
+<p> <exclam>		: "¶"	paragraph # PILCROW SIGN
+<P> <exclam>		: "¶"	paragraph # PILCROW SIGN
+<P> <P>			: "¶"	paragraph # PILCROW SIGN
+<o> <x>			: "¤"	currency # CURRENCY SIGN
+<x> <o>			: "¤"	currency # CURRENCY SIGN
+<O> <X>			: "¤"	currency # CURRENCY SIGN
+<X> <O>			: "¤"	currency # CURRENCY SIGN
+<less> <3>			: "♥"	U2665 # BLACK HEART SUIT
+<colon> <parenright>	: "☺"	U263A # WHITE SMILING FACE
+<comma> <minus>		: "¬"	notsign # NOT SIGN
+<minus> <comma>		: "¬"	notsign # NOT SIGN
+<dead_circumflex> <underscore> <a>	: "ª"	ordfeminine # FEMININE ORDINAL INDICATOR
+<asciicircum> <underscore> <a>	: "ª"	ordfeminine # FEMININE ORDINAL INDICATOR
+<dead_circumflex> <underscore> <o>	: "º"	masculine # MASCULINE ORDINAL INDICATOR
+<asciicircum> <underscore> <o>	: "º"	masculine # MASCULINE ORDINAL INDICATOR
+<asciicircum> <1>		: "¹"	onesuperior # SUPERSCRIPT ONE
+<1> <asciicircum>		: "¹"	onesuperior # SUPERSCRIPT ONE
+<asciicircum> <KP_1>	: "¹"	onesuperior # SUPERSCRIPT ONE
+<asciicircum> <2>		: "²"	twosuperior # SUPERSCRIPT TWO
+<2> <asciicircum>		: "²"	twosuperior # SUPERSCRIPT TWO
+<asciicircum> <KP_2>	: "²"	twosuperior # SUPERSCRIPT TWO
+<asciicircum> <3>		: "³"	threesuperior # SUPERSCRIPT THREE
+<3> <asciicircum>		: "³"	threesuperior # SUPERSCRIPT THREE
+<asciicircum> <KP_3>	: "³"	threesuperior # SUPERSCRIPT THREE
+<m> <u>			: "µ"	mu # MICRO SIGN
+<slash> <u>			: "µ"	mu # MICRO SIGN
+<u> <slash>			: "µ"	mu # MICRO SIGN
+<1> <4>			: "¼"	onequarter # VULGAR FRACTION ONE QUARTER
+<1> <2>			: "½"	onehalf # VULGAR FRACTION ONE HALF
+<3> <4>			: "¾"	threequarters # VULGAR FRACTION THREE QUARTERS
+<grave> <A>			: "À"	Agrave # LATIN CAPITAL LETTER A WITH GRAVE
+<A> <grave>			: "À"	Agrave # LATIN CAPITAL LETTER A WITH GRAVE
+<acute> <A>			: "Á"	Aacute # LATIN CAPITAL LETTER A WITH ACUTE
+<A> <acute>			: "Á"	Aacute # LATIN CAPITAL LETTER A WITH ACUTE
+<apostrophe> <A>		: "Á"	Aacute # LATIN CAPITAL LETTER A WITH ACUTE
+<A> <apostrophe>		: "Á"	Aacute # LATIN CAPITAL LETTER A WITH ACUTE
+<asciicircum> <A>		: "Â"	Acircumflex # LATIN CAPITAL LETTER A WITH CIRCUMFLEX
+<A> <asciicircum>		: "Â"	Acircumflex # LATIN CAPITAL LETTER A WITH CIRCUMFLEX
+<greater> <A>		: "Â"	Acircumflex # LATIN CAPITAL LETTER A WITH CIRCUMFLEX
+<A> <greater>		: "Â"	Acircumflex # LATIN CAPITAL LETTER A WITH CIRCUMFLEX
+<asciitilde> <A>		: "Ã"	Atilde # LATIN CAPITAL LETTER A WITH TILDE
+<A> <asciitilde>		: "Ã"	Atilde # LATIN CAPITAL LETTER A WITH TILDE
+<quotedbl> <A>		: "Ä"	Adiaeresis # LATIN CAPITAL LETTER A WITH DIAERESIS
+<A> <quotedbl>		: "Ä"	Adiaeresis # LATIN CAPITAL LETTER A WITH DIAERESIS
+<diaeresis> <A>		: "Ä"	Adiaeresis # LATIN CAPITAL LETTER A WITH DIAERESIS
+<A> <diaeresis>		: "Ä"	Adiaeresis # LATIN CAPITAL LETTER A WITH DIAERESIS
+<o> <A>			: "Å"	Aring # LATIN CAPITAL LETTER A WITH RING ABOVE
+<asterisk> <A>		: "Å"	Aring # LATIN CAPITAL LETTER A WITH RING ABOVE
+<A> <asterisk>		: "Å"	Aring # LATIN CAPITAL LETTER A WITH RING ABOVE
+<A> <A>			: "Å"	Aring # LATIN CAPITAL LETTER A WITH RING ABOVE
+<comma> <C>			: "Ç"	Ccedilla # LATIN CAPITAL LETTER C WITH CEDILLA
+<C> <comma>			: "Ç"	Ccedilla # LATIN CAPITAL LETTER C WITH CEDILLA
+<cedilla> <C>		: "Ç"	Ccedilla # LATIN CAPITAL LETTER C WITH CEDILLA
+<grave> <E>			: "È"	Egrave # LATIN CAPITAL LETTER E WITH GRAVE
+<E> <grave>			: "È"	Egrave # LATIN CAPITAL LETTER E WITH GRAVE
+<acute> <E>			: "É"	Eacute # LATIN CAPITAL LETTER E WITH ACUTE
+<E> <acute>			: "É"	Eacute # LATIN CAPITAL LETTER E WITH ACUTE
+<apostrophe> <E>		: "É"	Eacute # LATIN CAPITAL LETTER E WITH ACUTE
+<E> <apostrophe>		: "É"	Eacute # LATIN CAPITAL LETTER E WITH ACUTE
+<asciicircum> <E>		: "Ê"	Ecircumflex # LATIN CAPITAL LETTER E WITH CIRCUMFLEX
+<E> <asciicircum>		: "Ê"	Ecircumflex # LATIN CAPITAL LETTER E WITH CIRCUMFLEX
+<greater> <E>		: "Ê"	Ecircumflex # LATIN CAPITAL LETTER E WITH CIRCUMFLEX
+<E> <greater>		: "Ê"	Ecircumflex # LATIN CAPITAL LETTER E WITH CIRCUMFLEX
+<quotedbl> <E>		: "Ë"	Ediaeresis # LATIN CAPITAL LETTER E WITH DIAERESIS
+<E> <quotedbl>		: "Ë"	Ediaeresis # LATIN CAPITAL LETTER E WITH DIAERESIS
+<diaeresis> <E>		: "Ë"	Ediaeresis # LATIN CAPITAL LETTER E WITH DIAERESIS
+<E> <diaeresis>		: "Ë"	Ediaeresis # LATIN CAPITAL LETTER E WITH DIAERESIS
+<grave> <I>			: "Ì"	Igrave # LATIN CAPITAL LETTER I WITH GRAVE
+<I> <grave>			: "Ì"	Igrave # LATIN CAPITAL LETTER I WITH GRAVE
+<acute> <I>			: "Í"	Iacute # LATIN CAPITAL LETTER I WITH ACUTE
+<I> <acute>			: "Í"	Iacute # LATIN CAPITAL LETTER I WITH ACUTE
+<apostrophe> <I>		: "Í"	Iacute # LATIN CAPITAL LETTER I WITH ACUTE
+<I> <apostrophe>		: "Í"	Iacute # LATIN CAPITAL LETTER I WITH ACUTE
+<asciicircum> <I>		: "Î"	Icircumflex # LATIN CAPITAL LETTER I WITH CIRCUMFLEX
+<I> <asciicircum>		: "Î"	Icircumflex # LATIN CAPITAL LETTER I WITH CIRCUMFLEX
+<greater> <I>		: "Î"	Icircumflex # LATIN CAPITAL LETTER I WITH CIRCUMFLEX
+<I> <greater>		: "Î"	Icircumflex # LATIN CAPITAL LETTER I WITH CIRCUMFLEX
+<quotedbl> <I>		: "Ï"	Idiaeresis # LATIN CAPITAL LETTER I WITH DIAERESIS
+<I> <quotedbl>		: "Ï"	Idiaeresis # LATIN CAPITAL LETTER I WITH DIAERESIS
+<diaeresis> <I>		: "Ï"	Idiaeresis # LATIN CAPITAL LETTER I WITH DIAERESIS
+<I> <diaeresis>		: "Ï"	Idiaeresis # LATIN CAPITAL LETTER I WITH DIAERESIS
+<D> <H>			: "Ð"	ETH # LATIN CAPITAL LETTER ETH
+<asciitilde> <N>		: "Ñ"	Ntilde # LATIN CAPITAL LETTER N WITH TILDE
+<N> <asciitilde>		: "Ñ"	Ntilde # LATIN CAPITAL LETTER N WITH TILDE
+<grave> <O>			: "Ò"	Ograve # LATIN CAPITAL LETTER O WITH GRAVE
+<O> <grave>			: "Ò"	Ograve # LATIN CAPITAL LETTER O WITH GRAVE
+<acute> <O>			: "Ó"	Oacute # LATIN CAPITAL LETTER O WITH ACUTE
+<O> <acute>			: "Ó"	Oacute # LATIN CAPITAL LETTER O WITH ACUTE
+<apostrophe> <O>		: "Ó"	Oacute # LATIN CAPITAL LETTER O WITH ACUTE
+<O> <apostrophe>		: "Ó"	Oacute # LATIN CAPITAL LETTER O WITH ACUTE
+<asciicircum> <O>		: "Ô"	Ocircumflex # LATIN CAPITAL LETTER O WITH CIRCUMFLEX
+<O> <asciicircum>		: "Ô"	Ocircumflex # LATIN CAPITAL LETTER O WITH CIRCUMFLEX
+<greater> <O>		: "Ô"	Ocircumflex # LATIN CAPITAL LETTER O WITH CIRCUMFLEX
+<O> <greater>		: "Ô"	Ocircumflex # LATIN CAPITAL LETTER O WITH CIRCUMFLEX
+<asciitilde> <O>		: "Õ"	Otilde # LATIN CAPITAL LETTER O WITH TILDE
+<O> <asciitilde>		: "Õ"	Otilde # LATIN CAPITAL LETTER O WITH TILDE
+<quotedbl> <O>		: "Ö"	Odiaeresis # LATIN CAPITAL LETTER O WITH DIAERESIS
+<O> <quotedbl>		: "Ö"	Odiaeresis # LATIN CAPITAL LETTER O WITH DIAERESIS
+<diaeresis> <O>		: "Ö"	Odiaeresis # LATIN CAPITAL LETTER O WITH DIAERESIS
+<O> <diaeresis>		: "Ö"	Odiaeresis # LATIN CAPITAL LETTER O WITH DIAERESIS
+<x> <x>			: "×"	multiply # MULTIPLICATION SIGN
+<slash> <O>			: "Ø"	Oslash # LATIN CAPITAL LETTER O WITH STROKE
+<O> <slash>			: "Ø"	Oslash # LATIN CAPITAL LETTER O WITH STROKE
+<KP_Divide> <O>		: "Ø"	Oslash # LATIN CAPITAL LETTER O WITH STROKE
+<acute> <Y>			: "Ý"	Yacute # LATIN CAPITAL LETTER Y WITH ACUTE
+<Y> <acute>			: "Ý"	Yacute # LATIN CAPITAL LETTER Y WITH ACUTE
+<apostrophe> <Y>		: "Ý"	Yacute # LATIN CAPITAL LETTER Y WITH ACUTE
+<Y> <apostrophe>		: "Ý"	Yacute # LATIN CAPITAL LETTER Y WITH ACUTE
+<T> <H>			: "Þ"	THORN # LATIN CAPITAL LETTER THORN
+<grave> <a>			: "à"	agrave # LATIN SMALL LETTER A WITH GRAVE
+<a> <grave>			: "à"	agrave # LATIN SMALL LETTER A WITH GRAVE
+<acute> <a>			: "á"	aacute # LATIN SMALL LETTER A WITH ACUTE
+<a> <acute>			: "á"	aacute # LATIN SMALL LETTER A WITH ACUTE
+<apostrophe> <a>		: "á"	aacute # LATIN SMALL LETTER A WITH ACUTE
+<a> <apostrophe>		: "á"	aacute # LATIN SMALL LETTER A WITH ACUTE
+<asciicircum> <a>		: "â"	acircumflex # LATIN SMALL LETTER A WITH CIRCUMFLEX
+<a> <asciicircum>		: "â"	acircumflex # LATIN SMALL LETTER A WITH CIRCUMFLEX
+<greater> <a>		: "â"	acircumflex # LATIN SMALL LETTER A WITH CIRCUMFLEX
+<a> <greater>		: "â"	acircumflex # LATIN SMALL LETTER A WITH CIRCUMFLEX
+<asciitilde> <a>		: "ã"	atilde # LATIN SMALL LETTER A WITH TILDE
+<a> <asciitilde>		: "ã"	atilde # LATIN SMALL LETTER A WITH TILDE
+<quotedbl> <a>		: "ä"	adiaeresis # LATIN SMALL LETTER A WITH DIAERESIS
+<a> <quotedbl>		: "ä"	adiaeresis # LATIN SMALL LETTER A WITH DIAERESIS
+<diaeresis> <a>		: "ä"	adiaeresis # LATIN SMALL LETTER A WITH DIAERESIS
+<a> <diaeresis>		: "ä"	adiaeresis # LATIN SMALL LETTER A WITH DIAERESIS
+<o> <a>			: "å"	aring # LATIN SMALL LETTER A WITH RING ABOVE
+<asterisk> <a>		: "å"	aring # LATIN SMALL LETTER A WITH RING ABOVE
+<a> <asterisk>		: "å"	aring # LATIN SMALL LETTER A WITH RING ABOVE
+<a> <a>			: "å"	aring # LATIN SMALL LETTER A WITH RING ABOVE
+<comma> <c>			: "ç"	ccedilla # LATIN SMALL LETTER C WITH CEDILLA
+<c> <comma>			: "ç"	ccedilla # LATIN SMALL LETTER C WITH CEDILLA
+<cedilla> <c>		: "ç"	ccedilla # LATIN SMALL LETTER C WITH CEDILLA
+<grave> <e>			: "è"	egrave # LATIN SMALL LETTER E WITH GRAVE
+<e> <grave>			: "è"	egrave # LATIN SMALL LETTER E WITH GRAVE
+<acute> <e>			: "é"	eacute # LATIN SMALL LETTER E WITH ACUTE
+<e> <acute>			: "é"	eacute # LATIN SMALL LETTER E WITH ACUTE
+<apostrophe> <e>		: "é"	eacute # LATIN SMALL LETTER E WITH ACUTE
+<e> <apostrophe>		: "é"	eacute # LATIN SMALL LETTER E WITH ACUTE
+<asciicircum> <e>		: "ê"	ecircumflex # LATIN SMALL LETTER E WITH CIRCUMFLEX
+<e> <asciicircum>		: "ê"	ecircumflex # LATIN SMALL LETTER E WITH CIRCUMFLEX
+<greater> <e>		: "ê"	ecircumflex # LATIN SMALL LETTER E WITH CIRCUMFLEX
+<e> <greater>		: "ê"	ecircumflex # LATIN SMALL LETTER E WITH CIRCUMFLEX
+<quotedbl> <e>		: "ë"	ediaeresis # LATIN SMALL LETTER E WITH DIAERESIS
+<e> <quotedbl>		: "ë"	ediaeresis # LATIN SMALL LETTER E WITH DIAERESIS
+<diaeresis> <e>		: "ë"	ediaeresis # LATIN SMALL LETTER E WITH DIAERESIS
+<e> <diaeresis>		: "ë"	ediaeresis # LATIN SMALL LETTER E WITH DIAERESIS
+<grave> <i>			: "ì"	igrave # LATIN SMALL LETTER I WITH GRAVE
+<i> <grave>			: "ì"	igrave # LATIN SMALL LETTER I WITH GRAVE
+<acute> <i>			: "í"	iacute # LATIN SMALL LETTER I WITH ACUTE
+<i> <acute>			: "í"	iacute # LATIN SMALL LETTER I WITH ACUTE
+<apostrophe> <i>		: "í"	iacute # LATIN SMALL LETTER I WITH ACUTE
+<i> <apostrophe>		: "í"	iacute # LATIN SMALL LETTER I WITH ACUTE
+<asciicircum> <i>		: "î"	icircumflex # LATIN SMALL LETTER I WITH CIRCUMFLEX
+<i> <asciicircum>		: "î"	icircumflex # LATIN SMALL LETTER I WITH CIRCUMFLEX
+<greater> <i>		: "î"	icircumflex # LATIN SMALL LETTER I WITH CIRCUMFLEX
+<i> <greater>		: "î"	icircumflex # LATIN SMALL LETTER I WITH CIRCUMFLEX
+<quotedbl> <i>		: "ï"	idiaeresis # LATIN SMALL LETTER I WITH DIAERESIS
+<i> <quotedbl>		: "ï"	idiaeresis # LATIN SMALL LETTER I WITH DIAERESIS
+<diaeresis> <i>		: "ï"	idiaeresis # LATIN SMALL LETTER I WITH DIAERESIS
+<i> <diaeresis>		: "ï"	idiaeresis # LATIN SMALL LETTER I WITH DIAERESIS
+<d> <h>			: "ð"	eth # LATIN SMALL LETTER ETH
+<asciitilde> <n>		: "ñ"	ntilde # LATIN SMALL LETTER N WITH TILDE
+<n> <asciitilde>		: "ñ"	ntilde # LATIN SMALL LETTER N WITH TILDE
+<grave> <o>			: "ò"	ograve # LATIN SMALL LETTER O WITH GRAVE
+<o> <grave>			: "ò"	ograve # LATIN SMALL LETTER O WITH GRAVE
+<acute> <o>			: "ó"	oacute # LATIN SMALL LETTER O WITH ACUTE
+<o> <acute>			: "ó"	oacute # LATIN SMALL LETTER O WITH ACUTE
+<apostrophe> <o>		: "ó"	oacute # LATIN SMALL LETTER O WITH ACUTE
+<o> <apostrophe>		: "ó"	oacute # LATIN SMALL LETTER O WITH ACUTE
+<asciicircum> <o>		: "ô"	ocircumflex # LATIN SMALL LETTER O WITH CIRCUMFLEX
+<o> <asciicircum>		: "ô"	ocircumflex # LATIN SMALL LETTER O WITH CIRCUMFLEX
+<greater> <o>		: "ô"	ocircumflex # LATIN SMALL LETTER O WITH CIRCUMFLEX
+<o> <greater>		: "ô"	ocircumflex # LATIN SMALL LETTER O WITH CIRCUMFLEX
+<asciitilde> <o>		: "õ"	otilde # LATIN SMALL LETTER O WITH TILDE
+<o> <asciitilde>		: "õ"	otilde # LATIN SMALL LETTER O WITH TILDE
+<o> <diaeresis>		: "ö"	odiaeresis # LATIN SMALL LETTER O WITH DIAERESIS
+<diaeresis> <o>		: "ö"	odiaeresis # LATIN SMALL LETTER O WITH DIAERESIS
+<quotedbl> <o>		: "ö"	odiaeresis # LATIN SMALL LETTER O WITH DIAERESIS
+<o> <quotedbl>		: "ö"	odiaeresis # LATIN SMALL LETTER O WITH DIAERESIS
+<colon> <minus>		: "÷"	division # DIVISION SIGN
+<minus> <colon>		: "÷"	division # DIVISION SIGN
+<slash> <o>			: "ø"	oslash # LATIN SMALL LETTER O WITH STROKE
+<o> <slash>			: "ø"	oslash # LATIN SMALL LETTER O WITH STROKE
+<KP_Divide> <o>		: "ø"	oslash # LATIN SMALL LETTER O WITH STROKE
+<grave> <u>			: "ù"	ugrave # LATIN SMALL LETTER U WITH GRAVE
+<u> <grave>			: "ù"	ugrave # LATIN SMALL LETTER U WITH GRAVE
+<acute> <u>			: "ú"	uacute # LATIN SMALL LETTER U WITH ACUTE
+<u> <acute>			: "ú"	uacute # LATIN SMALL LETTER U WITH ACUTE
+<apostrophe> <u>		: "ú"	uacute # LATIN SMALL LETTER U WITH ACUTE
+<u> <apostrophe>		: "ú"	uacute # LATIN SMALL LETTER U WITH ACUTE
+<asciicircum> <u>		: "û"	ucircumflex # LATIN SMALL LETTER U WITH CIRCUMFLEX
+<u> <asciicircum>		: "û"	ucircumflex # LATIN SMALL LETTER U WITH CIRCUMFLEX
+<greater> <u>		: "û"	ucircumflex # LATIN SMALL LETTER U WITH CIRCUMFLEX
+<u> <greater>		: "û"	ucircumflex # LATIN SMALL LETTER U WITH CIRCUMFLEX
+<quotedbl> <u>		: "ü"	udiaeresis # LATIN SMALL LETTER U WITH DIAERESIS
+<u> <quotedbl>		: "ü"	udiaeresis # LATIN SMALL LETTER U WITH DIAERESIS
+<diaeresis> <u>		: "ü"	udiaeresis # LATIN SMALL LETTER U WITH DIAERESIS
+<u> <diaeresis>		: "ü"	udiaeresis # LATIN SMALL LETTER U WITH DIAERESIS
+<acute> <y>			: "ý"	yacute # LATIN SMALL LETTER Y WITH ACUTE
+<y> <acute>			: "ý"	yacute # LATIN SMALL LETTER Y WITH ACUTE
+<apostrophe> <y>		: "ý"	yacute # LATIN SMALL LETTER Y WITH ACUTE
+<y> <apostrophe>		: "ý"	yacute # LATIN SMALL LETTER Y WITH ACUTE
+<t> <h>			: "þ"	thorn # LATIN SMALL LETTER THORN
+<quotedbl> <y>		: "ÿ"	ydiaeresis # LATIN SMALL LETTER Y WITH DIAERESIS
+<y> <quotedbl>		: "ÿ"	ydiaeresis # LATIN SMALL LETTER Y WITH DIAERESIS
+<diaeresis> <y>		: "ÿ"	ydiaeresis # LATIN SMALL LETTER Y WITH DIAERESIS
+<y> <diaeresis>		: "ÿ"	ydiaeresis # LATIN SMALL LETTER Y WITH DIAERESIS
+<c> <S>			: "Š"	U0160 # LATIN CAPITAL LETTER S WITH CARON
+<v> <S>			: "Š"	U0160 # LATIN CAPITAL LETTER S WITH CARON
+<less> <S>			: "Š"	U0160 # LATIN CAPITAL LETTER S WITH CARON
+<S> <less>			: "Š"	U0160 # LATIN CAPITAL LETTER S WITH CARON
+<c> <s>			: "š"	U0161 # LATIN SMALL LETTER S WITH CARON
+<v> <s>			: "š"	U0161 # LATIN SMALL LETTER S WITH CARON
+<less> <s>			: "š"	U0161 # LATIN SMALL LETTER S WITH CARON
+<s> <less>			: "š"	U0161 # LATIN SMALL LETTER S WITH CARON
+<quotedbl> <Y>		: "Ÿ"	U0178 # LATIN CAPITAL LETTER Y WITH DIAERESIS
+<Y> <quotedbl>		: "Ÿ"	U0178 # LATIN CAPITAL LETTER Y WITH DIAERESIS
+<diaeresis> <Y>		: "Ÿ"	U0178 # LATIN CAPITAL LETTER Y WITH DIAERESIS
+<Y> <diaeresis>		: "Ÿ"	U0178 # LATIN CAPITAL LETTER Y WITH DIAERESIS
+<c> <Z>			: "Ž"	U017D # LATIN CAPITAL LETTER Z WITH CARON
+<v> <Z>			: "Ž"	U017D # LATIN CAPITAL LETTER Z WITH CARON
+<less> <Z>			: "Ž"	U017D # LATIN CAPITAL LETTER Z WITH CARON
+<Z> <less>			: "Ž"	U017D # LATIN CAPITAL LETTER Z WITH CARON
+<c> <z>			: "ž"	U017E # LATIN SMALL LETTER Z WITH CARON
+<v> <z>			: "ž"	U017E # LATIN SMALL LETTER Z WITH CARON
+<less> <z>			: "ž"	U017E # LATIN SMALL LETTER Z WITH CARON
+<z> <less>			: "ž"	U017E # LATIN SMALL LETTER Z WITH CARON
+<dead_circumflex> <underscore> <n>	: "ⁿ"	U207F # SUPERSCRIPT LATIN SMALL LETTER N
+<asciicircum> <underscore> <n>	: "ⁿ"	U207F # SUPERSCRIPT LATIN SMALL LETTER N
+<dead_circumflex> <T> <M>	: "™"	U2122 # TRADE MARK SIGN
+<T> <M>			: "™"	U2122 # TRADE MARK SIGN
+<dead_circumflex> <t> <m>	: "™"	U2122 # TRADE MARK SIGN
+<t> <m>			: "™"	U2122 # TRADE MARK SIGN
+<less> <minus>		: "←"	U2190 # LEFTWARDS ARROW
+<bar> <dead_circumflex>	: "↑"	U2191 # UPWARDS ARROW
+<dead_circumflex> <bar>	: "↑"	U2191 # UPWARDS ARROW
+<bar> <asciicircum>		: "↑"	U2191 # UPWARDS ARROW
+<asciicircum> <bar>		: "↑"	U2191 # UPWARDS ARROW
+<minus> <greater>		: "→"	U2192 # RIGHTWARDS ARROW
+<bar> <v>			: "↓"	U2193 # DOWNWARDS ARROW
+<v> <bar>			: "↓"	U2193 # DOWNWARDS ARROW
+<less> <equal>		: "≤"	U2264 # LESS-THAN OR EQUAL TO
+<greater> <equal>		: "≥"	U2265 # GREATER-THAN OR EQUAL TO
+<v> <slash>			: "√"	U221a # v / SQUARE ROOT
+<slash> <v>			: "√"	U221a # / v SQUARE ROOT
+<8> <8>			: "∞"	U221e # 8 8 INFINITY
+<asciitilde> <asciitilde>	: "≈"	U2248 # ~ ~ ALMOST EQUAL TO
+<dead_tilde> <dead_tilde>	: "≈"	U2248 # ~ ~ ALMOST EQUAL TO
+<equal> <underscore>	: "≡"	U2261 # = _ IDENTICAL TO
+<less> <underscore>		: "≤"	U2264 # < _ LESS-THAN OR EQUAL TO
+<underscore> <less>		: "≤"	U2264 # _ < LESS-THAN OR EQUAL TO
+<greater> <underscore>	: "≥"	U2265 # > _ GREATER-THAN OR EQUAL TO
+<underscore> <greater>	: "≥"	U2265 # _ > GREATER-THAN OR EQUAL TO
+<space> <space>		: " "	nobreakspace # NO-BREAK SPACE

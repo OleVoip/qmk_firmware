@@ -1,0 +1,815 @@
+
+
+    {n(1),    n(2),    189, 0x00BD}, // ½
+    {n(1),    n(4),    188, 0x00BC}, // ¼
+    {n(3),    n(4),    190, 0x00BE}, // ¾
+    {n(B),    n(S),      2, 0x263B}, // ☻
+    {n(CIRC), n(CIRC), 136, 0x02C6}, // ˆ
+    {n(C),    n(B),      5, 0x2663}, // ♣
+    {n(C),    n(R),      9, 0x25CB}, // ○
+    {n(COMM), n(COMM), 184, 0x00B8}, // ¸
+    {n(D),    n(D),    135, 0x2021}, // ‡
+    {n(D),    n(EXLM),  19, 0x203C}, // ‼
+    {n(D),    n(H),    240, 0x00F0}, // ð
+    {n(D),    n(M),      4, 0x2666}, // ♦
+    {n(DOT),  n(DOT),  133, 0x2026}, // …
+    {n(DQUO), n(DQUO), 168, 0x00A8}, // ¨
+    {n(E),    n(N),     13, 0x266A}, // ♪
+    {n(E),    n(S),     14, 0x266B}, // ♫
+    {n(EQL),  n(EQL),   22, 0x25AC}, // ▬
+    {n(EXLM), n(EXLM), 161, 0x00A1}, // ¡
+    {n(F),    n(F),    131, 0x0192}, // ƒ
+    {n(H),    n(T),      3, 0x2665}, // ♥
+    {n(LABK), n(LABK), 171, 0x00AB}, // «
+    {n(LABK), n(RABK),  29, 0x2194}, // ↔
+    {n(MINS), n(COMM), 172, 0x00AC}, // ¬
+    {n(MINS), n(LABK),  26, 0x2192}, // →
+    {n(M),    n(S),     11, 0x2642}, // ♂
+    {n(N),    n(B),    160, 0x00A0}, // nbsp
+    {n(O),    n(O),    176, 0x00B0}, // °
+    {n(PERC), n(O),    137, 0x2030}, // ‰
+    {n(PLUS), n(MINS), 177, 0x00B1}, // ±
+    {n(P),    n(EXLM), 182, 0x00B6}, // ¶
+    {n(QUES), n(QUES), 191, 0x00BF}, // ¿
+    {n(RABK), n(MINS),  27, 0x2190}, // ←
+    {n(RABK), n(RABK), 187, 0x00BB}, // »
+    {n(S),    n(M),      1, 0x25BA}, // ☺
+    {n(S),    n(N),     15, 0x263C}, // ☼
+    {n(S),    n(P),      6, 0x2660}, // ♠
+    {n(T),    n(H),    254, 0x00FE}  // þ
+    {n(T),    n(M),    153, 0x2122}, // ™
+    {n(U),    n(D),     18, 0x2195}, // ↕
+    {n(V),    n(S),     12, 0x2640}, // ♀
+    {n(X),    n(O),    164, 0x00A4}, // ¤
+    {n(X),    n(X),    215, 0x00D7}, // ×
+    {n(Y),    n(EQL),  165, 0x00A5}, // ¥
+    {s(D),    s(H),    208, 0x00D0}, // Ð
+    {s(T),    s(H),    222, 0x00DE}, // Þ
+//  s!"#$%&'
+{
+    {n(EXLM), n(EXLM), 161, 0x00A1}, // ¡
+    {n(DQUO), KC_SPC,  168, 0x00A8}, // ¨
+    {n(DQUO), n(MINS), 247, 0x00F7}, // ÷
+    {n(DQUO), s(A),    196, 0x00C4}, // Ä
+    {n(DQUO), s(E),    203, 0x00CB}, // Ë
+    {n(DQUO), s(I),    207, 0x00CF}, // Ï
+    {n(DQUO), s(O),    214, 0x00D6}, // Ö
+    {n(DQUO), s(U),    220, 0x00DC}, // Ü
+    {n(DQUO), n(A),    228, 0x00E4}, // ä
+    {n(DQUO), n(E),    235, 0x00EB}, // ë
+    {n(DQUO), n(I),    239, 0x00EF}, // ï
+    {n(DQUO), n(O),    246, 0x00F6}, // ö
+    {n(DQUO), n(S),    223, 0x00DF}, // ß
+    {n(DQUO), n(U),    252, 0x00FC}, // ü
+    {n(DQUO), n(Y),    255, 0x00FF}, // ÿ
+
+    {n(QUOT), KC_SPC,  180, 0x00B4}, // '
+    {n(QUOT), s(A),    193, 0x00C1}, // Á
+    {n(QUOT), s(E),    201, 0x00C9}, // É
+    {n(QUOT), s(I),    205, 0x00CD}, // Í
+    {n(QUOT), s(O),    211, 0x00D3}, // Ó
+    {n(QUOT), s(U),    218, 0x00DA}, // Ú
+    {n(QUOT), s(Y),    221, 0x00DD}, // Ý
+    {n(QUOT), n(A),    225, 0x00E1}, // á
+    {n(QUOT), n(E),    233, 0x00E9}, // é
+    {n(QUOT), n(I),    237, 0x00ED}, // í
+    {n(QUOT), n(O),    243, 0x00F3}, // ó
+    {n(QUOT), n(U),    250, 0x00FA}, // ú
+    {n(QUOT), n(Y),    253, 0x00FD}, // ý
+
+    {n(ACUT), KC_SPC,  180, 0x00B4}, // ´
+    {n(ACUT), s(A),    193, 0x00C1}, // Á
+    {n(ACUT), s(E),    201, 0x00C9}, // É
+    {n(ACUT), s(I),    205, 0x00CD}, // Í
+    {n(ACUT), s(O),    211, 0x00D3}, // Ó
+    {n(ACUT), s(U),    218, 0x00DA}, // Ú
+    {n(ACUT), s(Y),    221, 0x00DD}, // Ý
+    {n(ACUT), n(A),    225, 0x00E1}, // á
+    {n(ACUT), n(E),    233, 0x00E9}, // é
+    {n(ACUT), n(I),    237, 0x00ED}, // í
+    {n(ACUT), n(O),    243, 0x00F3}, // ó
+    {n(ACUT), n(U),    250, 0x00FA}, // ú
+    {n(ACUT), n(Y),    253, 0x00FD}, // ý
+
+
+//  ()*+,-./
+    {n(AST),  n(X),    215, 0x00D7}, // ×
+
+    {n(PLUS), n(MINS), 177, 0x00B1}, // ±
+
+    {n(COMM), n(COMM), 184, 0x00B8}, // ¸
+    {n(COMM), s(C),    199, 0x00C7}, // Ç
+    {n(COMM), n(C),    231, 0x00E7}, // ç
+
+    {n(MINS), n(s),    173, 0x00AD}, // SHY
+    {n(MINS), s(D),    208, 0x00D0}, // Ð
+    {n(MINS), n(D),    240, 0x00F0}, // ð
+    {n(MINS), s(L),    163, 0x00A3}, // £
+    {n(MINS), n(Y),    165, 0x00A5}, // ¥
+
+    {n(DOT),  n(MINS), 183, 0x00B7}, // ·
+
+    {n(SLSH), n(MNS),  166, 0x00A6}, // ¦
+    {n(SLSH), n(U),    181, 0x00B5}, // μ
+    {n(SLSH), s(O),    216, 0x00D8}, // Ø
+    {n(SLSH), n(O),    248, 0x00F8}, // ø
+    {n(SLSH), n(c),    162, 0x00A2}, // ¢
+
+
+//  :;<=>?@
+
+    {n(COLN), s(A),    196, 0x00C4}, // Ä
+    {n(COLN), s(E),    203, 0x00CB}, // Ë
+    {n(COLN), s(I),    207, 0x00CF}, // Ï
+    {n(COLN), s(O),    214, 0x00D6}, // Ö
+    {n(COLN), s(U),    220, 0x00DC}, // Ü
+    {n(COLN), n(A),    228, 0x00E4}, // ä
+    {n(COLN), n(E),    235, 0x00EB}, // ë
+    {n(COLN), n(I),    239, 0x00EF}, // ï
+    {n(COLN), n(O),    246, 0x00F6}, // ö
+    {n(COLN), n(S),    223, 0x00DF}, // ß
+    {n(COLN), n(U),    252, 0x00FC}, // ü
+    {n(COLN), n(Y),    255, 0x00FF}, // ÿ
+
+    {n(EQL),  s(L),    163, 0x00A3}, // £
+    {n(EQL),  n(Y),    165, 0x00A5}, // ¥
+
+
+//  [\]^_`{|}~
+
+    {n(MINS), n(COMM), 172, 0x00AC}, // ¬
+    {n(MINS), n(EXCL), 172, 0x00AC}, // ¬
+    {n(QUES), n(QUES), 191, 0x00BF}, // ¿
+
+    {n(CIRC), n(DQUO), 168, 0x00A8}, // ¨  Circumflex
+    {n(CIRC), n(MINS), 175, 0x00AF}, // ¯
+    [n(CIRC), n(1),    185, 0x00B9}, // ¹
+    {n(CIRC), n(2),    178, 0x00B2}, // ²
+    {n(CIRC), n(3),    179, 0x00B3}, // ³
+    {n(CIRC), n(COLN), 168, 0x00A8}, // ¨
+    {n(CIRC), s(A),    194, 0x00C2}, // Â
+    {n(CIRC), s(E),    202, 0x00CA}, // Ê
+    {n(CIRC), s(I),    206, 0x00CE}, // Î
+    {n(CIRC), s(O),    212, 0x00D4}, // Ô
+    {n(CIRC), s(U),    219, 0x00DB}, // Û
+    {n(CIRC), n(A),    226, 0x00E2}, // â
+    {n(CIRC), n(E),    234, 0x00EA}, // ê
+    {n(CIRC), n(I),    238, 0x00EE}, // î
+    {n(CIRC), n(U),    251, 0x00FB}, // û
+    {n(CIRC), n(O),    244, 0x00F4}, // ô
+
+    {n(GRV),  s(A),    192, 0x00C0}, // À
+    {n(GRV),  s(E),    200, 0x00C8}, // È
+    {n(GRV),  s(I),    204, 0x00CC}, // Ì
+    {n(GRV),  s(O),    210, 0x00D2}, // Ò
+    {n(GRV),  s(U),    217, 0x00D9}, // Ù
+    {n(GRV),  n(A),    224, 0x00E0}, // à
+    {n(GRV),  n(E),    232, 0x00E8}, // è
+    {n(GRV),  n(I),    236, 0x00EC}, // ì
+    {n(GRV),  n(O),    242, 0x00F2}, // ò
+    {n(GRV),  n(U),    249, 0x00F9}, // ù
+
+    {n(TILD), s(A),    195, 0x00C3}, // Ã
+    {n(TILD), s(N),    209, 0x00D1}, // Ñ
+    {n(TILD), s(O),    213, 0x00D5}, // Õ
+    {n(TILD), n(A),    227, 0x00E3}, // ã
+    {n(TILD), n(N),    241, 0x00F1}, // ñ
+    {n(TILD), n(O),    245, 0x00F5}, // õ
+
+    {n(N),    n(B),    160, 0x00A0}, // NBSP
+    {n(O),    n(O),    176, 0x00B0}, // °
+    {n(S),    n(O),    167, 0x00A7}, // §
+    {n(S),    n(S),    223, 0x00DF}, // ß
+
+    {n(PIPE), n(MNS),  166, 0x00A6}, // ¦
+
+
+//  num
+
+    {n(1),    n(2),    189, 0x00BD}, // ½
+    {n(1),    n(4),    188, 0x00BC}, // ¼
+    {n(3),    n(4),    190, 0x00BE}, // ¾
+
+//  alpha
+    {n(A),    n(E),    230, 0x00E6}, // æ
+    {n(A),    n(UNDS), 170, 0x00AA}, // ª
+    {s(A),    s(E),    198, 0x00C6}, // Æ
+
+    {n(LPRN), n(LPRN),  91, 0x005B}, // [
+    {n(LPRN), n(DOT),   91, 0x005B}, // [
+    {n(LPRN), n(AST),  123, 0x007B}, // {
+    {n(LPRN), n(MINS), 123, 0x007B}, // {
+    {n(RPRN), n(RPRN),  93, 0x005D}, // ]
+    {n(AST),  n(RPRN), 125, 0x007D}, // }
+    {n(PLUS), n(PLUS),  35, 0x0023}, // #
+    {n(MINS), n(RPRN), 125, 0x007D}, // }
+    {n(DOT),  n(RPRN),  93, 0x005D}, // ]
+    {n(SLSH), n(SLSH),  92, 0x005C}, // \
+    {n(SLSH), n(MINS),  92, 0x005C}, // \
+    {n(SLSH), n(EXCL), 124, 0x007C}, // |
+    {n(CIRC), KC_SPC,   94, 0x005E}, // ^
+    {n(GRV),  KC_SPC,   96, 0x0060}, // `
+    {n(A),    n(T),     64, 0x0040}, // @
+
+    {n(M),    n(U),    181, 0x00B5}, // μ
+
+    {n(O),    s(A),    197, 0x00C5}, // Å
+    {n(O),    n(A),    229, 0x00E5}, // å
+    {n(O),    n(C),    169, 0x00A9}, // ©
+    {n(O),    n(R),    174, 0x00AE}, // ®
+    {n(O),    n(UNDS), 186, 0x00BA}, // º
+    {n(P),    n(EXLM), 182, 0x00B6}, // ¶
+
+    {n(T),    n(H),    254, 0x00FE}  // þ
+    {s(T),    s(H),    222, 0x00DE}, // Þ
+    {s(D),    s(H),    208, 0x00D0}, // Ð
+    {n(D),    n(H),    240, 0x00F0}, // ð
+    {n(X),    n(O),    164, 0x00A4}, // ¤
+    {n(X),    n(X),    215, 0x00D7}, // ×
+
+
+    {s(O),    s(E),    140, 0x0152}, // Œ
+    {n(V),    s(Z),    142, 0x017D}, // Ž
+    {n(V),    s(S),    138, 0x0160}, // Š
+    {n(F),    n(F),    131, 0x0192}, // ƒ
+    {n(V),    n(S),    154, 0x0161}, // š
+    {n(O),    n(E),    156, 0x0153}, // œ
+    {n(V),    n(Z),    158, 0x017E}, // ž
+    {n(COLN), s(Y),    159, 0x0178}, // Ÿ
+    {n(DQUO), s(Y),    159, 0x0178}, // Ÿ
+    {n(CIRC), n(CIRC), 136, 0x02C6}, // ˆ
+    {n(MINS), S(E),    128, 0x20AC}, // €
+    {n(EQL),  S(E),    128, 0x20AC}, // €
+    {n(COMM), n(QUOT), 130, 0x201A}, // ‚
+    {n(COMM), n(DQUO), 132, 0x201E}, // „
+    {n(DOT),  n(DOT),  133, 0x2026}, // …
+    {n(S),    n(D),    134, 0x2020}, // †
+    {n(D),    n(D),    135, 0x2021}, // ‡
+    {n(PERC), n(O),    137, 0x2030}, // ‰
+    {n(DOT),  n(LABK), 139, 0x2039}, // ‹
+ALT+0145	‘ 2018 '< <'
+ALT+0146	' 2019 '> >'
+ALT+0147	" 201C "< <"
+ALT+0148	" 201D "> >"
+
+    {n(CIRC), n(TILD), 152, 0x02DC}, // ˜
+
+    {n(DOT),  n(EQL),  149, 0x2022}, // •
+    {n(MINS), n(DOT),  150, 0x2013}, // – en
+    {n(MINS), n(UNDS), 151, 0x2014}, // — em
+    {n(DOT),  n(RABK), 155, 0x203A}, // ›
+    {n(D),    n(EXLM),  19, 0x203C}, // ‼
+
+    {n(T),    n(M),    153, 0x2122}, // ™
+    {n(SLSH), n(B),     23, 0x21A8}, // ↨
+    {n(SLSH), n(CIRC),  24, 0x2195}, // ↑
+    {n(SLSH), n(V),     25, 0x2193}, // ↓
+    {n(LABK), n(RABK),  29, 0x2194}, // ↔
+    {n(RABK), n(MINS),  27, 0x2190}, // ←
+    {n(MINS), n(LABK),  26, 0x2192}, // →
+    {n(PIPE), n(B),     23, 0x21A8}, // ↨
+    {n(PIPE), n(CIRC),  24, 0x2195}, // ↑
+    {n(PIPE), n(V),     25, 0x2193}, // ↓
+    {n(MINS), n(CIRC),  24, 0x2195}, // ↑
+    {n(MINS), n(V),     25, 0x2193}, // ↓
+    {n(MINS), n(B),     23, 0x21A8}, // ↨
+    {n(U),    n(D),     18, 0x2195}, // ↕
+
+    {n(R),    n(A),     28, 0x221F}, // ∟
+
+    {n(EQL),  n(EQL),   22, 0x25AC}, // ▬
+    {n(P),    n(R),     16, 0x25BA}, // ►
+    {n(P),    n(L),     17, 0x25C4}, // ◄
+    {n(P),    n(U),     30, 0x25B2}, // ▲
+    {n(P),    n(D),     31, 0x25BC}, // ▼
+    {n(S),    n(M),      1, 0x25BA}, // ☺
+    {n(C),    n(R),      9, 0x25CB}, // ○
+
+    {n(C),    n(H),      3, 0x2665}, // ♥
+    {n(C),    n(D),      4, 0x2666}, // ♦
+    {n(C),    n(C),      5, 0x2663}, // ♣
+    {n(C),    n(S),      6, 0x2660}, // ♠
+    {n(S),    n(N),     15, 0x263C}, // ☼
+    {n(B),    n(S),      2, 0x263B}, // ☻
+    {n(E),    n(N),     13, 0x266A}, // ♪
+    {n(E),    n(S),     14, 0x266B}, // ♫
+    {n(M),    n(L),     11, 0x2642}, // ♂
+    {n(F),    n(M),     12, 0x2640}, // ♀
+}
+
+ALT+0
+ALT+1	☺
+ALT+2	☻
+ALT+3	♥
+ALT+4	♦
+ALT+5	♣
+ALT+6	♠
+ALT+7
+ALT+8
+ALT+9
+ALT+10
+ALT+11	♂
+ALT+12	♀
+T+13
+ALT+14	♫
+ALT+15	☼
+ALT+16	►
+ALT+17	◄
+ALT+18	↕
+ALT+19	‼
+ALT+20	¶
+ALT+21	§
+ALT+22	▬
+ALT+23	↨
+ALT+24	↑
+ALT+25	↓
+ALT+26	→
+ALT+27	←
+ALT+28	∟
+ALT+29	↔
+ALT+30	▲
+ALT+31	▼
+ALT+32
+ALT+33	!
+ALT+34	"
+ALT+35	#
+ALT+36	$
+ALT+37	%
+ALT+38	&
+ALT+39	'
+ALT+40	(
+ALT+41	)
+ALT+42	*
+ALT+43	+
+ALT+44	,
+ALT+45	-
+ALT+46	.
+ALT+47	/
+ALT+48	0
+ALT+49	1
+ALT+50	2
+ALT+51	3
+ALT+52	4
+ALT+53	5
+ALT+54	6
+ALT+55	7
+ALT+56	8
+ALT+57	9
+ALT+58	:
+ALT+59	;
+ALT+60	<
+ALT+61	=
+ALT+62	>
+ALT+63	?
+ALT+64	@
+ALT+65	A
+ALT+66	B
+ALT+67	C
+ALT+68	D
+ALT+69	E
+ALT+70	F
+ALT+71	G
+ALT+72	H
+ALT+73	I
+ALT+74	J
+ALT+75	K
+ALT+76	L
+ALT+77	M
+ALT+78	N
+ALT+79	O
+ALT+80	P
+ALT+81	Q
+ALT+82	R
+ALT+83	S
+ALT+84	T
+ALT+85	U
+ALT+86	V
+ALT+87	W
+ALT+88	X
+ALT+89	Y
+ALT+90	Z
+ALT+91	[
+ALT+92	\
+ALT+93	]
+ALT+94	^
+ALT+95	_
+ALT+96	`
+ALT+97	a
+ALT+98	b
+ALT+99	c
+ALT+100	d
+ALT+101	e
+ALT+102	f
+ALT+103	g
+ALT+104	h
+ALT+105	i
+ALT+106	j
+ALT+107	k
+ALT+108	l
+ALT+109	m
+ALT+110	n
+ALT+111	o
+ALT+112	p
+ALT+113	q
+ALT+114	r
+ALT+115	s
+ALT+116	t
+ALT+117	u
+ALT+118	v
+ALT+119	w
+ALT+120	x
+ALT+121	y
+ALT+122	z
+ALT+123	{
+ALT+124	|
+ALT+125	}
+ALT+126	~
+ALT+127	⌂
+
+ALT+128	Ç
+ALT+129	ü
+ALT+130	é
+ALT+131	â
+ALT+132	ä
+ALT+133	à
+ALT+134	å
+ALT+135	ç
+ALT+136	ê
+ALT+137	ë
+ALT+138	è
+ALT+139	ï
+ALT+140	î
+ALT+141	ì
+ALT+142	Ä
+ALT+143	Å
+ALT+144	É
+ALT+145	æ
+ALT+146	Æ
+ALT+147	ô
+ALT+148	ö
+ALT+149	ò
+ALT+150	û
+ALT+151	ù
+ALT+152	ÿ
+ALT+153	Ö
+ALT+154	Ü
+ALT+155	¢
+ALT+156	£
+ALT+157	¥
+ALT+158 ₧
+ALT+159	ƒ
+
+ALT+160	á
+ALT+161	í
+ALT+162	ó
+ALT+163	ú
+ALT+164	ñ
+ALT+165	Ñ
+ALT+166	ª
+ALT+167	º
+ALT+168	¿
+ALT+169	⌐   !-
+ALT+170	¬   -!
+ALT+171	½
+ALT+172	¼
+ALT+173	¡
+ALT+174	«
+ALT+175	»
+ALT+176	░   g1
+ALT+177	▒	g2
+ALT+178	▓	g3
+ALT+179	│	vb
+ALT+180	┤	vl
+ALT+181	╡	vL
+ALT+182	╢	Vl
+ALT+183	╖	Dl
+ALT+184	╕	dL
+ALT+185	╣	VL
+ALT+186	║	Vb
+ALT+187	╗	DL
+ALT+188	╝	UL
+ALT+189	╜	Ul
+ALT+190	╛	uL
+ALT+191	┐	dl
+ALT+192	└	ur
+ALT+193	┴	uh
+ALT+194	┬	dh
+ALT+195	├	vr
+ALT+196	─	hb
+ALT+197	┼	vh
+ALT+198	╞	vR
+ALT+199	╟	Vr
+ALT+200	╚	UR
+ALT+201	╔	DR
+ALT+202	╩	UH
+ALT+203	╦	DH
+ALT+204	╠	VR
+ALT+205	═	Hb
+ALT+206	╬	VH
+ALT+207	╧	uH
+ALT+208	╨	Uh
+ALT+209	╤	dH
+ALT+210	╥	Dh
+ALT+211	╙	Ur
+ALT+212	╘	uR
+ALT+213	╒	dR
+ALT+214	╓	Dr
+ALT+215	╫	Vh
+ALT+216	╪	vH
+ALT+217	┘	ul
+ALT+218	┌	dr
+ALT+219	█	bk
+ALT+220	▄	dk
+ALT+221	▌	lk
+ALT+222	▐	rk
+ALT+223	▀	uk
+ALT+224	α	al
+ALT+225	ß	bt
+ALT+226	Γ	Gm
+ALT+227	π	pi
+ALT+228	Σ	Sg
+ALT+229	σ	sg
+ALT+230	µ	mu
+ALT+231	τ	tu
+ALT+232	Φ	ph
+ALT+233	Θ	Th
+ALT+234	Ω	Om
+ALT+235	δ	dt
+ALT+236	∞	if
+ALT+237	φ	Ph
+ALT+238	ε	ep
+ALT+239	∩	cp
+ALT+240	≡	tb
+ALT+241	±	pm
+ALT+242	≥	ge
+ALT+243	≤	le
+ALT+244	⌠	iu
+ALT+245	⌡	il
+ALT+246	÷	:-
+ALT+247	≈	~~
+ALT+248	°	dg
+ALT+249	∙	bt
+ALT+250	·	.-
+ALT+251	√	sr
+ALT+252	ⁿ	^n
+ALT+253	²
+ALT+254	■	sq
+ALT+255
+
+ALT+00
+ALT+01	
+ALT+02	
+ALT+03	
+ALT+04	
+ALT+05	
+ALT+06	
+ALT+07
+ALT+08	
+ALT+09
+ALT+010
+ALT+011
+ALT+012
+ALT+013
+ALT+014	
+ALT+015	
+ALT+016	
+ALT+017	
+ALT+018	
+ALT+019	
+ALT+020	
+ALT+021	
+ALT+022	
+ALT+023	
+ALT+024	
+ALT+025	
+ALT+026	
+ALT+027	
+ALT+028	
+ALT+029	
+ALT+030	
+ALT+031	
+ALT+032
+ALT+033	!
+ALT+034	X
+ALT+035	#
+ALT+036	$
+ALT+037	%
+ALT+038	&
+ALT+039	X
+ALT+040	(
+ALT+041	)
+ALT+042	*
+ALT+043	+
+ALT+044	,
+ALT+045	-
+ALT+046	.
+ALT+047	/
+ALT+048	0
+ALT+049	1
+ALT+050	2
+ALT+051	3
+ALT+052	4
+ALT+053	5
+ALT+054	6
+ALT+055	7
+ALT+056	8
+ALT+057	9
+ALT+058	:
+ALT+059	;
+ALT+060	<
+ALT+061	=
+ALT+062	>
+ALT+063	?
+ALT+064	@
+ALT+065	A
+ALT+066	B
+ALT+067	C
+ALT+068	D
+ALT+069	E
+ALT+070	F
+ALT+071	G
+ALT+072	H
+ALT+073	I
+ALT+074	J
+ALT+075	K
+ALT+076	L
+ALT+077	M
+ALT+078	N
+ALT+079	O
+ALT+080	P
+ALT+081	Q
+ALT+082	R
+ALT+083	S
+ALT+084	T
+ALT+085	U
+ALT+086	V
+ALT+087	W
+ALT+088	X
+ALT+089	Y
+ALT+090	Z
+ALT+091	[
+ALT+092	\
+ALT+093	]
+ALT+094	^
+ALT+095	_
+ALT+096	`
+ALT+097	a
+ALT+098	b
+ALT+099	c
+ALT+0100	d
+ALT+0101	e
+ALT+0102	f
+ALT+0103	g
+ALT+0104	h
+ALT+0105	i
+ALT+0106	j
+ALT+0107	k
+ALT+0108	l
+ALT+0109	m
+ALT+0110	n
+ALT+0111	o
+ALT+0112	p
+ALT+0113	q
+ALT+0114	r
+ALT+0115	s
+ALT+0116	t
+ALT+0117	u
+ALT+0118	v
+ALT+0119	w
+ALT+0120	x
+ALT+0121	y
+ALT+0122	z
+ALT+0123	{
+ALT+0124	|
+ALT+0125	}
+ALT+0126	~
+ALT+0127	
+ALT+0128	€
+ALT+0129	
+ALT+0130	‚
+ALT+0131	ƒ
+ALT+0132	„
+ALT+0133	…
+ALT+0134	†
+ALT+0135	‡
+ALT+0136	ˆ
+ALT+0137	‰
+ALT+0138	Š
+ALT+0139	‹
+ALT+0140	Œ
+ALT+0141	
+ALT+0142	Ž
+ALT+0143	
+ALT+0144	
+ALT+0145	‘
+ALT+0146	'
+ALT+0147	"
+ALT+0148	"
+ALT+0149	•
+ALT+0150	–
+ALT+0151	—
+ALT+0152	˜
+ALT+0153	™
+ALT+0154	š
+ALT+0155	›
+ALT+0156	œ
+ALT+0157	
+ALT+0158	ž
+ALT+0159	Ÿ
+ALT+0160
+ALT+0161	¡
+ALT+0162	¢
+ALT+0163	£
+ALT+0164	¤
+ALT+0165	¥
+ALT+0166	¦
+ALT+0167	§
+ALT+0168	¨
+ALT+0169	©
+ALT+0170	ª
+ALT+0171	«
+ALT+0172	¬
+ALT+0173	­
+ALT+0174	®
+ALT+0175	¯
+ALT+0176	°
+ALT+0177	±
+ALT+0178	²
+ALT+0179	³
+ALT+0180	´
+ALT+0181	µ
+ALT+0182	¶
+ALT+0183	·
+ALT+0184	¸
+ALT+0185	¹
+ALT+0186	º
+ALT+0187	»
+ALT+0188	¼
+ALT+0189	½
+ALT+0190	¾
+ALT+0191	¿
+ALT+0192	À
+ALT+0193	Á
+ALT+0194	Â
+ALT+0195	Ã
+ALT+0196	Ä
+ALT+0197	Å
+ALT+0198	Æ
+ALT+0199	Ç
+ALT+0200	È
+ALT+0201	É
+ALT+0202	Ê
+ALT+0203	Ë
+ALT+0204	Ì
+ALT+0205	Í
+ALT+0206	Î
+ALT+0207	Ï
+ALT+0208	Ð
+ALT+0209	Ñ
+ALT+0210	Ò
+ALT+0211	Ó
+ALT+0212	Ô
+ALT+0213	Õ
+ALT+0214	Ö
+ALT+0215	×
+ALT+0216	Ø
+ALT+0217	Ù
+ALT+0218	Ú
+ALT+0219	Û
+ALT+0220	Ü
+ALT+0221	Ý
+ALT+0222	Þ
+ALT+0223	ß
+ALT+0224	à
+ALT+0225	á
+ALT+0226	â
+ALT+0227	ã
+ALT+0228	ä
+ALT+0229	å
+ALT+0230	æ
+ALT+0231	ç
+ALT+0232	è
+ALT+0233	é
+ALT+0234	ê
+ALT+0235	ë
+ALT+0236	ì
+ALT+0237	í
+ALT+0238	î
+ALT+0239	ï
+ALT+0240	ð
+ALT+0241	ñ
+ALT+0242	ò
+ALT+0243	ó
+ALT+0244	ô
+ALT+0245	õ
+ALT+0246	ö
+ALT+0247	÷
+ALT+0248	ø
+ALT+0249	ù
+ALT+0250	ú
+ALT+0251	û
+ALT+0252	ü
+ALT+0253	ý
+ALT+0254	þ
+ALT+0255	ÿ
+
